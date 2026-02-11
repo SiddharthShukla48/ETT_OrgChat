@@ -1,0 +1,111 @@
+employee_id,employee_name,project_id,project_name,role_in_project,start_date,department
+EMP0001,Charles Jones,PROJ019,Project Phoenix,Contributor,2024-06-02,Operations
+EMP0001,Charles Jones,PROJ020,Project Phoenix,Lead,2024-04-23,Operations
+EMP0001,Charles Jones,PROJ004,Project Beta,Reviewer,2024-11-14,Operations
+EMP0002,William Johnson,PROJ016,Project Delta,Lead,2023-03-25,Sales
+EMP0002,William Johnson,PROJ003,Project Delta,Contributor,2024-03-15,Sales
+EMP0002,William Johnson,PROJ007,Project Beta,Developer,2023-10-16,Sales
+EMP0003,Richard Hernandez,PROJ015,Project Phoenix,Lead,2023-11-21,Engineering
+EMP0003,Richard Hernandez,PROJ005,Project Delta,Reviewer,2023-12-21,Engineering
+EMP0004,Michael Gonzalez,PROJ007,Project Delta,Developer,2023-05-22,Finance
+EMP0004,Michael Gonzalez,PROJ015,Project Titan,Lead,2024-12-07,Finance
+EMP0004,Michael Gonzalez,PROJ003,Project Alpha,Developer,2023-07-22,Finance
+EMP0005,Jane Thomas,PROJ011,Project Alpha,Reviewer,2023-11-11,Marketing
+EMP0005,Jane Thomas,PROJ012,Project Beta,Reviewer,2024-05-13,Marketing
+EMP0005,Jane Thomas,PROJ004,Project Phoenix,Contributor,2024-09-17,Marketing
+EMP0006,Linda Martinez,PROJ014,Project Beta,Developer,2024-10-24,Legal
+EMP0006,Linda Martinez,PROJ020,Project Gamma,Contributor,2024-11-28,Legal
+EMP0007,Jane Anderson,PROJ006,Project Alpha,Lead,2024-03-02,IT Support
+EMP0008,Michelle Miller,PROJ017,Project Phoenix,Reviewer,2024-06-28,Legal
+EMP0008,Michelle Miller,PROJ001,Project Alpha,Developer,2023-05-16,Legal
+EMP0009,Linda Thomas,PROJ014,Project Phoenix,Developer,2023-02-13,Sales
+EMP0010,Emily Wilson,PROJ013,Project Phoenix,Reviewer,2024-07-08,Human Resources
+EMP0010,Emily Wilson,PROJ017,Project Phoenix,Contributor,2024-02-20,Human Resources
+EMP0010,Emily Wilson,PROJ005,Project Beta,Contributor,2023-12-12,Human Resources
+EMP0011,Robert Jones,PROJ006,Project Gamma,Developer,2024-10-20,Engineering
+EMP0011,Robert Jones,PROJ006,Project Titan,Reviewer,2023-04-21,Engineering
+EMP0011,Robert Jones,PROJ014,Project Alpha,Developer,2023-12-17,Engineering
+EMP0012,John Johnson,PROJ016,Project Delta,Lead,2023-06-02,Operations
+EMP0012,John Johnson,PROJ007,Project Titan,Contributor,2023-07-20,Operations
+EMP0013,Michelle Anderson,PROJ020,Project Titan,Reviewer,2023-12-24,Operations
+EMP0013,Michelle Anderson,PROJ012,Project Alpha,Developer,2024-07-24,Operations
+EMP0013,Michelle Anderson,PROJ010,Project Phoenix,Reviewer,2024-08-28,Operations
+EMP0014,Emily Hernandez,PROJ020,Project Gamma,Contributor,2024-07-24,Engineering
+EMP0015,David Johnson,PROJ009,Project Alpha,Contributor,2024-03-17,Human Resources
+EMP0015,David Johnson,PROJ015,Project Delta,Contributor,2023-10-01,Human Resources
+EMP0016,Charles Martinez,PROJ018,Project Titan,Reviewer,2023-09-15,Sales
+EMP0016,Charles Martinez,PROJ007,Project Alpha,Lead,2023-08-18,Sales
+EMP0017,John Johnson,PROJ015,Project Delta,Developer,2024-11-05,Human Resources
+EMP0018,Michelle Brown,PROJ009,Project Beta,Contributor,2023-04-05,Human Resources
+EMP0019,Jennifer Hernandez,PROJ019,Project Titan,Contributor,2024-08-05,Operations
+EMP0019,Jennifer Hernandez,PROJ018,Project Titan,Reviewer,2024-02-08,Operations
+EMP0019,Jennifer Hernandez,PROJ017,Project Delta,Lead,2023-10-12,Operations
+EMP0020,James Miller,PROJ006,Project Gamma,Developer,2023-08-01,Marketing
+EMP0020,James Miller,PROJ008,Project Delta,Developer,2023-09-20,Marketing
+EMP0020,James Miller,PROJ009,Project Alpha,Reviewer,2023-02-07,Marketing
+EMP0021,William Martinez,PROJ010,Project Delta,Reviewer,2024-05-13,Operations
+EMP0021,William Martinez,PROJ005,Project Gamma,Reviewer,2024-07-16,Operations
+EMP0021,William Martinez,PROJ010,Project Phoenix,Reviewer,2024-03-13,Operations
+EMP0022,Michelle Martinez,PROJ018,Project Gamma,Developer,2023-08-16,Human Resources
+EMP0022,Michelle Martinez,PROJ015,Project Titan,Contributor,2024-05-27,Human Resources
+EMP0022,Michelle Martinez,PROJ016,Project Alpha,Lead,2023-02-28,Human Resources
+EMP0023,Lisa Williams,PROJ012,Project Phoenix,Developer,2024-01-02,Operations
+EMP0024,James Johnson,PROJ013,Project Alpha,Developer,2024-02-17,Legal
+EMP0024,James Johnson,PROJ013,Project Phoenix,Reviewer,2024-06-01,Legal
+EMP0024,James Johnson,PROJ012,Project Alpha,Lead,2023-02-09,Legal
+EMP0025,William Miller,PROJ018,Project Gamma,Reviewer,2023-01-26,Sales
+EMP0026,William Brown,PROJ010,Project Alpha,Lead,2024-11-09,Engineering
+EMP0026,William Brown,PROJ017,Project Alpha,Developer,2023-04-18,Engineering
+EMP0027,Richard Gonzalez,PROJ018,Project Gamma,Lead,2024-12-17,Sales
+EMP0027,Richard Gonzalez,PROJ011,Project Phoenix,Contributor,2024-03-15,Sales
+EMP0028,David Taylor,PROJ016,Project Beta,Contributor,2023-04-06,Sales
+EMP0029,James Anderson,PROJ013,Project Delta,Contributor,2023-06-19,Finance
+EMP0029,James Anderson,PROJ019,Project Titan,Lead,2024-10-06,Finance
+EMP0029,James Anderson,PROJ001,Project Alpha,Lead,2023-02-26,Finance
+EMP0030,Sarah Rodriguez,PROJ006,Project Phoenix,Lead,2023-08-26,Operations
+EMP0030,Sarah Rodriguez,PROJ001,Project Delta,Contributor,2024-01-12,Operations
+EMP0030,Sarah Rodriguez,PROJ002,Project Beta,Contributor,2023-10-27,Operations
+EMP0031,Emily Wilson,PROJ012,Project Alpha,Contributor,2024-02-19,Human Resources
+EMP0031,Emily Wilson,PROJ005,Project Delta,Contributor,2023-02-26,Human Resources
+EMP0031,Emily Wilson,PROJ010,Project Beta,Lead,2023-12-28,Human Resources
+EMP0032,Robert Wilson,PROJ012,Project Gamma,Developer,2023-10-11,Engineering
+EMP0032,Robert Wilson,PROJ011,Project Alpha,Developer,2023-11-20,Engineering
+EMP0033,William Thomas,PROJ007,Project Phoenix,Contributor,2024-04-22,Finance
+EMP0034,William Williams,PROJ005,Project Delta,Developer,2024-08-04,IT Support
+EMP0034,William Williams,PROJ018,Project Beta,Developer,2024-02-10,IT Support
+EMP0034,William Williams,PROJ010,Project Delta,Developer,2023-08-22,IT Support
+EMP0035,Sarah Thomas,PROJ011,Project Alpha,Contributor,2023-09-06,Operations
+EMP0035,Sarah Thomas,PROJ010,Project Gamma,Contributor,2024-10-05,Operations
+EMP0036,James Rodriguez,PROJ002,Project Gamma,Developer,2023-02-27,IT Support
+EMP0037,Robert Taylor,PROJ001,Project Delta,Developer,2023-12-10,Engineering
+EMP0037,Robert Taylor,PROJ017,Project Alpha,Developer,2023-04-01,Engineering
+EMP0038,Charles Taylor,PROJ012,Project Phoenix,Lead,2024-11-01,Engineering
+EMP0039,James Davis,PROJ020,Project Titan,Lead,2023-06-18,Human Resources
+EMP0039,James Davis,PROJ015,Project Beta,Contributor,2024-03-01,Human Resources
+EMP0039,James Davis,PROJ017,Project Delta,Lead,2023-02-03,Human Resources
+EMP0040,William Brown,PROJ003,Project Alpha,Lead,2023-04-04,Marketing
+EMP0040,William Brown,PROJ013,Project Alpha,Lead,2024-01-01,Marketing
+EMP0040,William Brown,PROJ004,Project Delta,Developer,2023-12-07,Marketing
+EMP0041,Linda Brown,PROJ012,Project Gamma,Developer,2023-12-25,Engineering
+EMP0041,Linda Brown,PROJ006,Project Alpha,Contributor,2024-02-07,Engineering
+EMP0042,Linda Johnson,PROJ004,Project Titan,Developer,2023-06-25,Operations
+EMP0042,Linda Johnson,PROJ012,Project Delta,Lead,2024-12-02,Operations
+EMP0042,Linda Johnson,PROJ004,Project Titan,Lead,2023-11-25,Operations
+EMP0043,Richard Johnson,PROJ013,Project Alpha,Lead,2024-08-14,Legal
+EMP0043,Richard Johnson,PROJ006,Project Beta,Developer,2023-05-15,Legal
+EMP0044,Jane Taylor,PROJ008,Project Titan,Contributor,2023-11-21,Human Resources
+EMP0044,Jane Taylor,PROJ002,Project Titan,Developer,2024-09-18,Human Resources
+EMP0044,Jane Taylor,PROJ006,Project Alpha,Lead,2024-12-27,Human Resources
+EMP0045,Linda Miller,PROJ012,Project Alpha,Lead,2024-08-13,Sales
+EMP0045,Linda Miller,PROJ016,Project Alpha,Lead,2023-06-02,Sales
+EMP0046,Charles Johnson,PROJ019,Project Alpha,Contributor,2023-11-04,Marketing
+EMP0047,David Williams,PROJ013,Project Gamma,Lead,2023-09-14,Operations
+EMP0047,David Williams,PROJ006,Project Phoenix,Reviewer,2023-02-14,Operations
+EMP0048,Linda Jones,PROJ011,Project Gamma,Contributor,2024-09-03,Finance
+EMP0048,Linda Jones,PROJ012,Project Delta,Developer,2023-01-28,Finance
+EMP0048,Linda Jones,PROJ009,Project Gamma,Reviewer,2023-04-11,Finance
+EMP0049,John Anderson,PROJ018,Project Beta,Lead,2023-02-15,Finance
+EMP0049,John Anderson,PROJ017,Project Gamma,Contributor,2023-09-13,Finance
+EMP0049,John Anderson,PROJ011,Project Titan,Lead,2023-10-02,Finance
+EMP0050,Linda Garcia,PROJ020,Project Beta,Lead,2024-05-17,Marketing
+EMP0050,Linda Garcia,PROJ011,Project Delta,Contributor,2024-11-06,Marketing

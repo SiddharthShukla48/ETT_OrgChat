@@ -1,0 +1,2742 @@
+{
+  "organization_info": {
+    "company_name": "TechCorp Solutions",
+    "founded": "2010",
+    "headquarters": "New York, NY",
+    "employees_count": 500,
+    "industry": "Technology Services",
+    "mission": "Delivering innovative technology solutions to drive business transformation"
+  },
+  "employees": [
+    {
+      "employee_id": "EMP0001",
+      "first_name": "Charles",
+      "last_name": "Jones",
+      "email": "richard.anderson@company.com",
+      "department": "Operations",
+      "role": "Senior Software Engineer",
+      "manager_id": null,
+      "hire_date": "2018-05-27",
+      "salary": 164493,
+      "location": "San Francisco",
+      "phone": "+1-130-772-9916",
+      "emergency_contact": {
+        "name": "Patricia Hernandez",
+        "relationship": "Parent",
+        "phone": "+1-166-207-6521"
+      },
+      "skills": [
+        "Node.js",
+        "Machine Learning",
+        "DevOps"
+      ],
+      "performance_rating": "Excellent",
+      "vacation_days_remaining": 3,
+      "benefits": {
+        "health_insurance": true,
+        "dental_insurance": false,
+        "vision_insurance": false,
+        "401k_enrolled": false,
+        "stock_options": true
+      },
+      "access_level": "Manager",
+      "status": "On Leave",
+      "projects": [
+        {
+          "project_id": "PROJ019",
+          "project_name": "Project Phoenix",
+          "role_in_project": "Contributor",
+          "start_date": "2024-06-02"
+        },
+        {
+          "project_id": "PROJ020",
+          "project_name": "Project Phoenix",
+          "role_in_project": "Lead",
+          "start_date": "2024-04-23"
+        },
+        {
+          "project_id": "PROJ004",
+          "project_name": "Project Beta",
+          "role_in_project": "Reviewer",
+          "start_date": "2024-11-14"
+        }
+      ]
+    },
+    {
+      "employee_id": "EMP0002",
+      "first_name": "William",
+      "last_name": "Johnson",
+      "email": "maria.martinez@company.com",
+      "department": "Sales",
+      "role": "Manager",
+      "manager_id": null,
+      "hire_date": "2024-01-04",
+      "salary": 147713,
+      "location": "Mumbai",
+      "phone": "+1-441-709-3390",
+      "emergency_contact": {
+        "name": "John Davis",
+        "relationship": "Friend",
+        "phone": "+1-373-616-7855"
+      },
+      "skills": [
+        "Data Analysis",
+        "Machine Learning",
+        "Project Management",
+        "Communication",
+        "React"
+      ],
+      "performance_rating": "Good",
+      "vacation_days_remaining": 8,
+      "benefits": {
+        "health_insurance": true,
+        "dental_insurance": true,
+        "vision_insurance": false,
+        "401k_enrolled": false,
+        "stock_options": false
+      },
+      "access_level": "Administration",
+      "status": "On Leave",
+      "projects": [
+        {
+          "project_id": "PROJ016",
+          "project_name": "Project Delta",
+          "role_in_project": "Lead",
+          "start_date": "2023-03-25"
+        },
+        {
+          "project_id": "PROJ003",
+          "project_name": "Project Delta",
+          "role_in_project": "Contributor",
+          "start_date": "2024-03-15"
+        },
+        {
+          "project_id": "PROJ007",
+          "project_name": "Project Beta",
+          "role_in_project": "Developer",
+          "start_date": "2023-10-16"
+        }
+      ]
+    },
+    {
+      "employee_id": "EMP0003",
+      "first_name": "Richard",
+      "last_name": "Hernandez",
+      "email": "lisa.hernandez@company.com",
+      "department": "Engineering",
+      "role": "Team Lead",
+      "manager_id": null,
+      "hire_date": "2019-01-12",
+      "salary": 86844,
+      "location": "Berlin",
+      "phone": "+1-546-962-4981",
+      "emergency_contact": {
+        "name": "Maria Smith",
+        "relationship": "Parent",
+        "phone": "+1-374-729-5596"
+      },
+      "skills": [
+        "JavaScript",
+        "DevOps",
+        "Leadership",
+        "Java",
+        "Python"
+      ],
+      "performance_rating": "Excellent",
+      "vacation_days_remaining": 13,
+      "benefits": {
+        "health_insurance": true,
+        "dental_insurance": true,
+        "vision_insurance": false,
+        "401k_enrolled": true,
+        "stock_options": false
+      },
+      "access_level": "Employee",
+      "status": "On Leave",
+      "projects": [
+        {
+          "project_id": "PROJ015",
+          "project_name": "Project Phoenix",
+          "role_in_project": "Lead",
+          "start_date": "2023-11-21"
+        },
+        {
+          "project_id": "PROJ005",
+          "project_name": "Project Delta",
+          "role_in_project": "Reviewer",
+          "start_date": "2023-12-21"
+        }
+      ]
+    },
+    {
+      "employee_id": "EMP0004",
+      "first_name": "Michael",
+      "last_name": "Gonzalez",
+      "email": "emily.taylor@company.com",
+      "department": "Finance",
+      "role": "IT Specialist",
+      "manager_id": null,
+      "hire_date": "2020-07-10",
+      "salary": 56016,
+      "location": "Singapore",
+      "phone": "+1-548-137-5739",
+      "emergency_contact": {
+        "name": "Sarah Hernandez",
+        "relationship": "Sibling",
+        "phone": "+1-251-894-9802"
+      },
+      "skills": [
+        "SQL",
+        "DevOps",
+        "Python",
+        "Agile"
+      ],
+      "performance_rating": "Good",
+      "vacation_days_remaining": 16,
+      "benefits": {
+        "health_insurance": true,
+        "dental_insurance": true,
+        "vision_insurance": false,
+        "401k_enrolled": false,
+        "stock_options": false
+      },
+      "access_level": "Administration",
+      "status": "Active",
+      "projects": [
+        {
+          "project_id": "PROJ007",
+          "project_name": "Project Delta",
+          "role_in_project": "Developer",
+          "start_date": "2023-05-22"
+        },
+        {
+          "project_id": "PROJ015",
+          "project_name": "Project Titan",
+          "role_in_project": "Lead",
+          "start_date": "2024-12-07"
+        },
+        {
+          "project_id": "PROJ003",
+          "project_name": "Project Alpha",
+          "role_in_project": "Developer",
+          "start_date": "2023-07-22"
+        }
+      ]
+    },
+    {
+      "employee_id": "EMP0005",
+      "first_name": "Jane",
+      "last_name": "Thomas",
+      "email": "john.davis@company.com",
+      "department": "Marketing",
+      "role": "Financial Analyst",
+      "manager_id": null,
+      "hire_date": "2020-10-01",
+      "salary": 152215,
+      "location": "Toronto",
+      "phone": "+1-632-428-1850",
+      "emergency_contact": {
+        "name": "Linda Miller",
+        "relationship": "Spouse",
+        "phone": "+1-425-337-5375"
+      },
+      "skills": [
+        "Machine Learning",
+        "Node.js",
+        "Java"
+      ],
+      "performance_rating": "Good",
+      "vacation_days_remaining": 18,
+      "benefits": {
+        "health_insurance": true,
+        "dental_insurance": true,
+        "vision_insurance": false,
+        "401k_enrolled": false,
+        "stock_options": false
+      },
+      "access_level": "Employee",
+      "status": "Active",
+      "projects": [
+        {
+          "project_id": "PROJ011",
+          "project_name": "Project Alpha",
+          "role_in_project": "Reviewer",
+          "start_date": "2023-11-11"
+        },
+        {
+          "project_id": "PROJ012",
+          "project_name": "Project Beta",
+          "role_in_project": "Reviewer",
+          "start_date": "2024-05-13"
+        },
+        {
+          "project_id": "PROJ004",
+          "project_name": "Project Phoenix",
+          "role_in_project": "Contributor",
+          "start_date": "2024-09-17"
+        }
+      ]
+    },
+    {
+      "employee_id": "EMP0006",
+      "first_name": "Linda",
+      "last_name": "Martinez",
+      "email": "michael.thomas@company.com",
+      "department": "Legal",
+      "role": "Financial Analyst",
+      "manager_id": null,
+      "hire_date": "2024-11-14",
+      "salary": 190883,
+      "location": "Berlin",
+      "phone": "+1-624-296-1128",
+      "emergency_contact": {
+        "name": "Patricia Williams",
+        "relationship": "Parent",
+        "phone": "+1-612-613-9678"
+      },
+      "skills": [
+        "JavaScript",
+        "Project Management",
+        "Data Analysis",
+        "React"
+      ],
+      "performance_rating": "Needs Improvement",
+      "vacation_days_remaining": 5,
+      "benefits": {
+        "health_insurance": true,
+        "dental_insurance": false,
+        "vision_insurance": false,
+        "401k_enrolled": true,
+        "stock_options": false
+      },
+      "access_level": "Employee",
+      "status": "Active",
+      "projects": [
+        {
+          "project_id": "PROJ014",
+          "project_name": "Project Beta",
+          "role_in_project": "Developer",
+          "start_date": "2024-10-24"
+        },
+        {
+          "project_id": "PROJ020",
+          "project_name": "Project Gamma",
+          "role_in_project": "Contributor",
+          "start_date": "2024-11-28"
+        }
+      ]
+    },
+    {
+      "employee_id": "EMP0007",
+      "first_name": "Jane",
+      "last_name": "Anderson",
+      "email": "david.martinez@company.com",
+      "department": "IT Support",
+      "role": "Operations Coordinator",
+      "manager_id": null,
+      "hire_date": "2020-12-25",
+      "salary": 65517,
+      "location": "San Francisco",
+      "phone": "+1-206-260-9819",
+      "emergency_contact": {
+        "name": "Charles Hernandez",
+        "relationship": "Friend",
+        "phone": "+1-896-517-5596"
+      },
+      "skills": [
+        "Communication",
+        "React",
+        "Data Analysis",
+        "Cloud Computing",
+        "Java",
+        "Project Management"
+      ],
+      "performance_rating": "Excellent",
+      "vacation_days_remaining": 17,
+      "benefits": {
+        "health_insurance": true,
+        "dental_insurance": true,
+        "vision_insurance": true,
+        "401k_enrolled": true,
+        "stock_options": true
+      },
+      "access_level": "Manager",
+      "status": "Active",
+      "projects": [
+        {
+          "project_id": "PROJ006",
+          "project_name": "Project Alpha",
+          "role_in_project": "Lead",
+          "start_date": "2024-03-02"
+        }
+      ]
+    },
+    {
+      "employee_id": "EMP0008",
+      "first_name": "Michelle",
+      "last_name": "Miller",
+      "email": "patricia.wilson@company.com",
+      "department": "Legal",
+      "role": "Team Lead",
+      "manager_id": null,
+      "hire_date": "2022-06-23",
+      "salary": 69774,
+      "location": "Mumbai",
+      "phone": "+1-514-828-9788",
+      "emergency_contact": {
+        "name": "Charles Miller",
+        "relationship": "Parent",
+        "phone": "+1-196-182-9834"
+      },
+      "skills": [
+        "Cloud Computing",
+        "SQL",
+        "Machine Learning"
+      ],
+      "performance_rating": "Good",
+      "vacation_days_remaining": 23,
+      "benefits": {
+        "health_insurance": true,
+        "dental_insurance": false,
+        "vision_insurance": false,
+        "401k_enrolled": false,
+        "stock_options": false
+      },
+      "access_level": "Administration",
+      "status": "Active",
+      "projects": [
+        {
+          "project_id": "PROJ017",
+          "project_name": "Project Phoenix",
+          "role_in_project": "Reviewer",
+          "start_date": "2024-06-28"
+        },
+        {
+          "project_id": "PROJ001",
+          "project_name": "Project Alpha",
+          "role_in_project": "Developer",
+          "start_date": "2023-05-16"
+        }
+      ]
+    },
+    {
+      "employee_id": "EMP0009",
+      "first_name": "Linda",
+      "last_name": "Thomas",
+      "email": "jennifer.smith@company.com",
+      "department": "Sales",
+      "role": "Sales Representative",
+      "manager_id": null,
+      "hire_date": "2023-07-28",
+      "salary": 95175,
+      "location": "Singapore",
+      "phone": "+1-943-264-6402",
+      "emergency_contact": {
+        "name": "Emily Johnson",
+        "relationship": "Friend",
+        "phone": "+1-363-827-9462"
+      },
+      "skills": [
+        "Node.js",
+        "Leadership",
+        "Python",
+        "JavaScript"
+      ],
+      "performance_rating": "Satisfactory",
+      "vacation_days_remaining": 23,
+      "benefits": {
+        "health_insurance": true,
+        "dental_insurance": false,
+        "vision_insurance": false,
+        "401k_enrolled": false,
+        "stock_options": false
+      },
+      "access_level": "Employee",
+      "status": "Active",
+      "projects": [
+        {
+          "project_id": "PROJ014",
+          "project_name": "Project Phoenix",
+          "role_in_project": "Developer",
+          "start_date": "2023-02-13"
+        }
+      ]
+    },
+    {
+      "employee_id": "EMP0010",
+      "first_name": "Emily",
+      "last_name": "Wilson",
+      "email": "john.wilson@company.com",
+      "department": "Human Resources",
+      "role": "Senior Software Engineer",
+      "manager_id": null,
+      "hire_date": "2021-12-21",
+      "salary": 56166,
+      "location": "San Francisco",
+      "phone": "+1-411-762-4801",
+      "emergency_contact": {
+        "name": "James Rodriguez",
+        "relationship": "Parent",
+        "phone": "+1-100-736-5347"
+      },
+      "skills": [
+        "SQL",
+        "Communication",
+        "JavaScript",
+        "React",
+        "DevOps",
+        "Data Analysis"
+      ],
+      "performance_rating": "Excellent",
+      "vacation_days_remaining": 4,
+      "benefits": {
+        "health_insurance": true,
+        "dental_insurance": true,
+        "vision_insurance": false,
+        "401k_enrolled": true,
+        "stock_options": false
+      },
+      "access_level": "Administration",
+      "status": "On Leave",
+      "projects": [
+        {
+          "project_id": "PROJ013",
+          "project_name": "Project Phoenix",
+          "role_in_project": "Reviewer",
+          "start_date": "2024-07-08"
+        },
+        {
+          "project_id": "PROJ017",
+          "project_name": "Project Phoenix",
+          "role_in_project": "Contributor",
+          "start_date": "2024-02-20"
+        },
+        {
+          "project_id": "PROJ005",
+          "project_name": "Project Beta",
+          "role_in_project": "Contributor",
+          "start_date": "2023-12-12"
+        }
+      ]
+    },
+    {
+      "employee_id": "EMP0011",
+      "first_name": "Robert",
+      "last_name": "Jones",
+      "email": "lisa.thomas@company.com",
+      "department": "Engineering",
+      "role": "Marketing Specialist",
+      "manager_id": null,
+      "hire_date": "2024-12-02",
+      "salary": 125805,
+      "location": "London",
+      "phone": "+1-424-404-1717",
+      "emergency_contact": {
+        "name": "Michelle Miller",
+        "relationship": "Friend",
+        "phone": "+1-365-432-6425"
+      },
+      "skills": [
+        "Project Management",
+        "Node.js",
+        "SQL",
+        "Java",
+        "Agile"
+      ],
+      "performance_rating": "Satisfactory",
+      "vacation_days_remaining": 6,
+      "benefits": {
+        "health_insurance": true,
+        "dental_insurance": true,
+        "vision_insurance": true,
+        "401k_enrolled": false,
+        "stock_options": true
+      },
+      "access_level": "Employee",
+      "status": "Active",
+      "projects": [
+        {
+          "project_id": "PROJ006",
+          "project_name": "Project Gamma",
+          "role_in_project": "Developer",
+          "start_date": "2024-10-20"
+        },
+        {
+          "project_id": "PROJ006",
+          "project_name": "Project Titan",
+          "role_in_project": "Reviewer",
+          "start_date": "2023-04-21"
+        },
+        {
+          "project_id": "PROJ014",
+          "project_name": "Project Alpha",
+          "role_in_project": "Developer",
+          "start_date": "2023-12-17"
+        }
+      ]
+    },
+    {
+      "employee_id": "EMP0012",
+      "first_name": "John",
+      "last_name": "Johnson",
+      "email": "sarah.anderson@company.com",
+      "department": "Operations",
+      "role": "Legal Counsel",
+      "manager_id": "EMP0001",
+      "hire_date": "2023-05-14",
+      "salary": 101523,
+      "location": "Berlin",
+      "phone": "+1-227-149-3477",
+      "emergency_contact": {
+        "name": "Sarah Rodriguez",
+        "relationship": "Sibling",
+        "phone": "+1-627-407-9193"
+      },
+      "skills": [
+        "Machine Learning",
+        "Node.js",
+        "Leadership",
+        "Communication",
+        "Project Management"
+      ],
+      "performance_rating": "Satisfactory",
+      "vacation_days_remaining": 13,
+      "benefits": {
+        "health_insurance": true,
+        "dental_insurance": true,
+        "vision_insurance": true,
+        "401k_enrolled": false,
+        "stock_options": true
+      },
+      "access_level": "Manager",
+      "status": "Active",
+      "projects": [
+        {
+          "project_id": "PROJ016",
+          "project_name": "Project Delta",
+          "role_in_project": "Lead",
+          "start_date": "2023-06-02"
+        },
+        {
+          "project_id": "PROJ007",
+          "project_name": "Project Titan",
+          "role_in_project": "Contributor",
+          "start_date": "2023-07-20"
+        }
+      ]
+    },
+    {
+      "employee_id": "EMP0013",
+      "first_name": "Michelle",
+      "last_name": "Anderson",
+      "email": "james.garcia@company.com",
+      "department": "Operations",
+      "role": "Director",
+      "manager_id": "EMP0005",
+      "hire_date": "2023-05-20",
+      "salary": 156177,
+      "location": "San Francisco",
+      "phone": "+1-355-633-4950",
+      "emergency_contact": {
+        "name": "William Taylor",
+        "relationship": "Friend",
+        "phone": "+1-601-423-2786"
+      },
+      "skills": [
+        "Agile",
+        "Machine Learning",
+        "DevOps"
+      ],
+      "performance_rating": "Excellent",
+      "vacation_days_remaining": 12,
+      "benefits": {
+        "health_insurance": true,
+        "dental_insurance": false,
+        "vision_insurance": false,
+        "401k_enrolled": true,
+        "stock_options": true
+      },
+      "access_level": "Manager",
+      "status": "Active",
+      "projects": [
+        {
+          "project_id": "PROJ020",
+          "project_name": "Project Titan",
+          "role_in_project": "Reviewer",
+          "start_date": "2023-12-24"
+        },
+        {
+          "project_id": "PROJ012",
+          "project_name": "Project Alpha",
+          "role_in_project": "Developer",
+          "start_date": "2024-07-24"
+        },
+        {
+          "project_id": "PROJ010",
+          "project_name": "Project Phoenix",
+          "role_in_project": "Reviewer",
+          "start_date": "2024-08-28"
+        }
+      ]
+    },
+    {
+      "employee_id": "EMP0014",
+      "first_name": "Emily",
+      "last_name": "Hernandez",
+      "email": "sarah.anderson@company.com",
+      "department": "Engineering",
+      "role": "Team Lead",
+      "manager_id": "EMP0008",
+      "hire_date": "2024-04-09",
+      "salary": 118697,
+      "location": "Sydney",
+      "phone": "+1-719-416-2156",
+      "emergency_contact": {
+        "name": "Linda Anderson",
+        "relationship": "Sibling",
+        "phone": "+1-568-840-4468"
+      },
+      "skills": [
+        "JavaScript",
+        "DevOps",
+        "Data Analysis"
+      ],
+      "performance_rating": "Satisfactory",
+      "vacation_days_remaining": 24,
+      "benefits": {
+        "health_insurance": true,
+        "dental_insurance": true,
+        "vision_insurance": true,
+        "401k_enrolled": false,
+        "stock_options": true
+      },
+      "access_level": "Manager",
+      "status": "On Leave",
+      "projects": [
+        {
+          "project_id": "PROJ020",
+          "project_name": "Project Gamma",
+          "role_in_project": "Contributor",
+          "start_date": "2024-07-24"
+        }
+      ]
+    },
+    {
+      "employee_id": "EMP0015",
+      "first_name": "David",
+      "last_name": "Johnson",
+      "email": "lisa.rodriguez@company.com",
+      "department": "Human Resources",
+      "role": "Sales Representative",
+      "manager_id": "EMP0004",
+      "hire_date": "2024-09-08",
+      "salary": 62031,
+      "location": "London",
+      "phone": "+1-774-914-1862",
+      "emergency_contact": {
+        "name": "John Rodriguez",
+        "relationship": "Friend",
+        "phone": "+1-774-462-4819"
+      },
+      "skills": [
+        "Node.js",
+        "React",
+        "Data Analysis"
+      ],
+      "performance_rating": "Satisfactory",
+      "vacation_days_remaining": 13,
+      "benefits": {
+        "health_insurance": true,
+        "dental_insurance": false,
+        "vision_insurance": true,
+        "401k_enrolled": false,
+        "stock_options": false
+      },
+      "access_level": "Manager",
+      "status": "On Leave",
+      "projects": [
+        {
+          "project_id": "PROJ009",
+          "project_name": "Project Alpha",
+          "role_in_project": "Contributor",
+          "start_date": "2024-03-17"
+        },
+        {
+          "project_id": "PROJ015",
+          "project_name": "Project Delta",
+          "role_in_project": "Contributor",
+          "start_date": "2023-10-01"
+        }
+      ]
+    },
+    {
+      "employee_id": "EMP0016",
+      "first_name": "Charles",
+      "last_name": "Martinez",
+      "email": "william.lopez@company.com",
+      "department": "Sales",
+      "role": "Operations Coordinator",
+      "manager_id": "EMP0003",
+      "hire_date": "2020-10-12",
+      "salary": 71633,
+      "location": "Berlin",
+      "phone": "+1-214-393-7806",
+      "emergency_contact": {
+        "name": "Jane Rodriguez",
+        "relationship": "Sibling",
+        "phone": "+1-352-413-6367"
+      },
+      "skills": [
+        "Data Analysis",
+        "Leadership",
+        "SQL",
+        "JavaScript",
+        "Machine Learning",
+        "DevOps"
+      ],
+      "performance_rating": "Good",
+      "vacation_days_remaining": 16,
+      "benefits": {
+        "health_insurance": true,
+        "dental_insurance": false,
+        "vision_insurance": true,
+        "401k_enrolled": false,
+        "stock_options": true
+      },
+      "access_level": "Administration",
+      "status": "Active",
+      "projects": [
+        {
+          "project_id": "PROJ018",
+          "project_name": "Project Titan",
+          "role_in_project": "Reviewer",
+          "start_date": "2023-09-15"
+        },
+        {
+          "project_id": "PROJ007",
+          "project_name": "Project Alpha",
+          "role_in_project": "Lead",
+          "start_date": "2023-08-18"
+        }
+      ]
+    },
+    {
+      "employee_id": "EMP0017",
+      "first_name": "John",
+      "last_name": "Johnson",
+      "email": "richard.williams@company.com",
+      "department": "Human Resources",
+      "role": "HR Specialist",
+      "manager_id": "EMP0005",
+      "hire_date": "2022-12-01",
+      "salary": 143447,
+      "location": "San Francisco",
+      "phone": "+1-438-796-9908",
+      "emergency_contact": {
+        "name": "Patricia Garcia",
+        "relationship": "Friend",
+        "phone": "+1-580-805-6993"
+      },
+      "skills": [
+        "Leadership",
+        "Java",
+        "Machine Learning",
+        "Python",
+        "React",
+        "Project Management"
+      ],
+      "performance_rating": "Needs Improvement",
+      "vacation_days_remaining": 8,
+      "benefits": {
+        "health_insurance": true,
+        "dental_insurance": true,
+        "vision_insurance": false,
+        "401k_enrolled": false,
+        "stock_options": true
+      },
+      "access_level": "Administration",
+      "status": "On Leave",
+      "projects": [
+        {
+          "project_id": "PROJ015",
+          "project_name": "Project Delta",
+          "role_in_project": "Developer",
+          "start_date": "2024-11-05"
+        }
+      ]
+    },
+    {
+      "employee_id": "EMP0018",
+      "first_name": "Michelle",
+      "last_name": "Brown",
+      "email": "michael.johnson@company.com",
+      "department": "Human Resources",
+      "role": "Senior Software Engineer",
+      "manager_id": "EMP0007",
+      "hire_date": "2021-11-07",
+      "salary": 64803,
+      "location": "London",
+      "phone": "+1-604-345-2770",
+      "emergency_contact": {
+        "name": "Jennifer Jones",
+        "relationship": "Parent",
+        "phone": "+1-692-788-3598"
+      },
+      "skills": [
+        "Node.js",
+        "SQL",
+        "Machine Learning",
+        "React",
+        "Leadership"
+      ],
+      "performance_rating": "Needs Improvement",
+      "vacation_days_remaining": 22,
+      "benefits": {
+        "health_insurance": true,
+        "dental_insurance": true,
+        "vision_insurance": false,
+        "401k_enrolled": true,
+        "stock_options": false
+      },
+      "access_level": "Administration",
+      "status": "On Leave",
+      "projects": [
+        {
+          "project_id": "PROJ009",
+          "project_name": "Project Beta",
+          "role_in_project": "Contributor",
+          "start_date": "2023-04-05"
+        }
+      ]
+    },
+    {
+      "employee_id": "EMP0019",
+      "first_name": "Jennifer",
+      "last_name": "Hernandez",
+      "email": "lisa.martinez@company.com",
+      "department": "Operations",
+      "role": "IT Specialist",
+      "manager_id": "EMP0004",
+      "hire_date": "2024-07-14",
+      "salary": 173630,
+      "location": "London",
+      "phone": "+1-595-488-3714",
+      "emergency_contact": {
+        "name": "Michelle Rodriguez",
+        "relationship": "Parent",
+        "phone": "+1-778-955-7913"
+      },
+      "skills": [
+        "Agile",
+        "React",
+        "Cloud Computing",
+        "Communication",
+        "DevOps",
+        "Python"
+      ],
+      "performance_rating": "Good",
+      "vacation_days_remaining": 17,
+      "benefits": {
+        "health_insurance": true,
+        "dental_insurance": true,
+        "vision_insurance": false,
+        "401k_enrolled": true,
+        "stock_options": true
+      },
+      "access_level": "Employee",
+      "status": "Active",
+      "projects": [
+        {
+          "project_id": "PROJ019",
+          "project_name": "Project Titan",
+          "role_in_project": "Contributor",
+          "start_date": "2024-08-05"
+        },
+        {
+          "project_id": "PROJ018",
+          "project_name": "Project Titan",
+          "role_in_project": "Reviewer",
+          "start_date": "2024-02-08"
+        },
+        {
+          "project_id": "PROJ017",
+          "project_name": "Project Delta",
+          "role_in_project": "Lead",
+          "start_date": "2023-10-12"
+        }
+      ]
+    },
+    {
+      "employee_id": "EMP0020",
+      "first_name": "James",
+      "last_name": "Miller",
+      "email": "david.brown@company.com",
+      "department": "Marketing",
+      "role": "Sales Representative",
+      "manager_id": "EMP0008",
+      "hire_date": "2020-05-03",
+      "salary": 57256,
+      "location": "New York",
+      "phone": "+1-300-219-4287",
+      "emergency_contact": {
+        "name": "John Wilson",
+        "relationship": "Parent",
+        "phone": "+1-998-642-8902"
+      },
+      "skills": [
+        "Agile",
+        "Communication",
+        "SQL",
+        "Cloud Computing",
+        "Project Management",
+        "React"
+      ],
+      "performance_rating": "Good",
+      "vacation_days_remaining": 6,
+      "benefits": {
+        "health_insurance": true,
+        "dental_insurance": true,
+        "vision_insurance": true,
+        "401k_enrolled": false,
+        "stock_options": false
+      },
+      "access_level": "Administration",
+      "status": "Active",
+      "projects": [
+        {
+          "project_id": "PROJ006",
+          "project_name": "Project Gamma",
+          "role_in_project": "Developer",
+          "start_date": "2023-08-01"
+        },
+        {
+          "project_id": "PROJ008",
+          "project_name": "Project Delta",
+          "role_in_project": "Developer",
+          "start_date": "2023-09-20"
+        },
+        {
+          "project_id": "PROJ009",
+          "project_name": "Project Alpha",
+          "role_in_project": "Reviewer",
+          "start_date": "2023-02-07"
+        }
+      ]
+    },
+    {
+      "employee_id": "EMP0021",
+      "first_name": "William",
+      "last_name": "Martinez",
+      "email": "linda.williams@company.com",
+      "department": "Operations",
+      "role": "Senior Software Engineer",
+      "manager_id": "EMP0008",
+      "hire_date": "2020-03-04",
+      "salary": 101760,
+      "location": "Toronto",
+      "phone": "+1-199-397-5626",
+      "emergency_contact": {
+        "name": "Robert Anderson",
+        "relationship": "Friend",
+        "phone": "+1-997-812-4065"
+      },
+      "skills": [
+        "DevOps",
+        "Python",
+        "Data Analysis",
+        "Java",
+        "Communication"
+      ],
+      "performance_rating": "Satisfactory",
+      "vacation_days_remaining": 7,
+      "benefits": {
+        "health_insurance": true,
+        "dental_insurance": false,
+        "vision_insurance": true,
+        "401k_enrolled": true,
+        "stock_options": true
+      },
+      "access_level": "Administration",
+      "status": "On Leave",
+      "projects": [
+        {
+          "project_id": "PROJ010",
+          "project_name": "Project Delta",
+          "role_in_project": "Reviewer",
+          "start_date": "2024-05-13"
+        },
+        {
+          "project_id": "PROJ005",
+          "project_name": "Project Gamma",
+          "role_in_project": "Reviewer",
+          "start_date": "2024-07-16"
+        },
+        {
+          "project_id": "PROJ010",
+          "project_name": "Project Phoenix",
+          "role_in_project": "Reviewer",
+          "start_date": "2024-03-13"
+        }
+      ]
+    },
+    {
+      "employee_id": "EMP0022",
+      "first_name": "Michelle",
+      "last_name": "Martinez",
+      "email": "richard.rodriguez@company.com",
+      "department": "Human Resources",
+      "role": "Operations Coordinator",
+      "manager_id": "EMP0003",
+      "hire_date": "2020-12-01",
+      "salary": 179596,
+      "location": "San Francisco",
+      "phone": "+1-891-192-4458",
+      "emergency_contact": {
+        "name": "Charles Anderson",
+        "relationship": "Sibling",
+        "phone": "+1-767-367-4866"
+      },
+      "skills": [
+        "Project Management",
+        "React",
+        "Agile",
+        "SQL"
+      ],
+      "performance_rating": "Excellent",
+      "vacation_days_remaining": 25,
+      "benefits": {
+        "health_insurance": true,
+        "dental_insurance": true,
+        "vision_insurance": true,
+        "401k_enrolled": false,
+        "stock_options": false
+      },
+      "access_level": "Manager",
+      "status": "Active",
+      "projects": [
+        {
+          "project_id": "PROJ018",
+          "project_name": "Project Gamma",
+          "role_in_project": "Developer",
+          "start_date": "2023-08-16"
+        },
+        {
+          "project_id": "PROJ015",
+          "project_name": "Project Titan",
+          "role_in_project": "Contributor",
+          "start_date": "2024-05-27"
+        },
+        {
+          "project_id": "PROJ016",
+          "project_name": "Project Alpha",
+          "role_in_project": "Lead",
+          "start_date": "2023-02-28"
+        }
+      ]
+    },
+    {
+      "employee_id": "EMP0023",
+      "first_name": "Lisa",
+      "last_name": "Williams",
+      "email": "jane.davis@company.com",
+      "department": "Operations",
+      "role": "Financial Analyst",
+      "manager_id": "EMP0006",
+      "hire_date": "2024-06-23",
+      "salary": 156981,
+      "location": "Singapore",
+      "phone": "+1-577-443-3168",
+      "emergency_contact": {
+        "name": "Jane Williams",
+        "relationship": "Spouse",
+        "phone": "+1-730-500-4903"
+      },
+      "skills": [
+        "Java",
+        "JavaScript",
+        "Data Analysis",
+        "Project Management"
+      ],
+      "performance_rating": "Good",
+      "vacation_days_remaining": 3,
+      "benefits": {
+        "health_insurance": true,
+        "dental_insurance": true,
+        "vision_insurance": true,
+        "401k_enrolled": true,
+        "stock_options": true
+      },
+      "access_level": "Manager",
+      "status": "On Leave",
+      "projects": [
+        {
+          "project_id": "PROJ012",
+          "project_name": "Project Phoenix",
+          "role_in_project": "Developer",
+          "start_date": "2024-01-02"
+        }
+      ]
+    },
+    {
+      "employee_id": "EMP0024",
+      "first_name": "James",
+      "last_name": "Johnson",
+      "email": "robert.smith@company.com",
+      "department": "Legal",
+      "role": "Software Engineer",
+      "manager_id": "EMP0002",
+      "hire_date": "2024-12-03",
+      "salary": 60285,
+      "location": "Berlin",
+      "phone": "+1-122-912-6790",
+      "emergency_contact": {
+        "name": "Charles Gonzalez",
+        "relationship": "Parent",
+        "phone": "+1-930-271-4338"
+      },
+      "skills": [
+        "React",
+        "Project Management",
+        "Python",
+        "Cloud Computing"
+      ],
+      "performance_rating": "Satisfactory",
+      "vacation_days_remaining": 16,
+      "benefits": {
+        "health_insurance": true,
+        "dental_insurance": false,
+        "vision_insurance": false,
+        "401k_enrolled": true,
+        "stock_options": false
+      },
+      "access_level": "Manager",
+      "status": "Active",
+      "projects": [
+        {
+          "project_id": "PROJ013",
+          "project_name": "Project Alpha",
+          "role_in_project": "Developer",
+          "start_date": "2024-02-17"
+        },
+        {
+          "project_id": "PROJ013",
+          "project_name": "Project Phoenix",
+          "role_in_project": "Reviewer",
+          "start_date": "2024-06-01"
+        },
+        {
+          "project_id": "PROJ012",
+          "project_name": "Project Alpha",
+          "role_in_project": "Lead",
+          "start_date": "2023-02-09"
+        }
+      ]
+    },
+    {
+      "employee_id": "EMP0025",
+      "first_name": "William",
+      "last_name": "Miller",
+      "email": "patricia.thomas@company.com",
+      "department": "Sales",
+      "role": "Software Engineer",
+      "manager_id": "EMP0009",
+      "hire_date": "2023-01-15",
+      "salary": 64298,
+      "location": "Sydney",
+      "phone": "+1-308-213-2601",
+      "emergency_contact": {
+        "name": "David Hernandez",
+        "relationship": "Spouse",
+        "phone": "+1-461-998-4872"
+      },
+      "skills": [
+        "Data Analysis",
+        "Agile",
+        "Project Management"
+      ],
+      "performance_rating": "Needs Improvement",
+      "vacation_days_remaining": 23,
+      "benefits": {
+        "health_insurance": true,
+        "dental_insurance": true,
+        "vision_insurance": true,
+        "401k_enrolled": true,
+        "stock_options": false
+      },
+      "access_level": "Administration",
+      "status": "Active",
+      "projects": [
+        {
+          "project_id": "PROJ018",
+          "project_name": "Project Gamma",
+          "role_in_project": "Reviewer",
+          "start_date": "2023-01-26"
+        }
+      ]
+    },
+    {
+      "employee_id": "EMP0026",
+      "first_name": "William",
+      "last_name": "Brown",
+      "email": "david.davis@company.com",
+      "department": "Engineering",
+      "role": "HR Specialist",
+      "manager_id": "EMP0006",
+      "hire_date": "2021-10-13",
+      "salary": 176305,
+      "location": "Toronto",
+      "phone": "+1-712-694-9419",
+      "emergency_contact": {
+        "name": "Michelle Taylor",
+        "relationship": "Parent",
+        "phone": "+1-403-648-3372"
+      },
+      "skills": [
+        "Agile",
+        "Python",
+        "SQL",
+        "React",
+        "Data Analysis",
+        "DevOps"
+      ],
+      "performance_rating": "Satisfactory",
+      "vacation_days_remaining": 17,
+      "benefits": {
+        "health_insurance": true,
+        "dental_insurance": false,
+        "vision_insurance": true,
+        "401k_enrolled": true,
+        "stock_options": false
+      },
+      "access_level": "Administration",
+      "status": "Active",
+      "projects": [
+        {
+          "project_id": "PROJ010",
+          "project_name": "Project Alpha",
+          "role_in_project": "Lead",
+          "start_date": "2024-11-09"
+        },
+        {
+          "project_id": "PROJ017",
+          "project_name": "Project Alpha",
+          "role_in_project": "Developer",
+          "start_date": "2023-04-18"
+        }
+      ]
+    },
+    {
+      "employee_id": "EMP0027",
+      "first_name": "Richard",
+      "last_name": "Gonzalez",
+      "email": "charles.miller@company.com",
+      "department": "Sales",
+      "role": "Operations Coordinator",
+      "manager_id": "EMP0002",
+      "hire_date": "2023-03-13",
+      "salary": 135162,
+      "location": "London",
+      "phone": "+1-952-685-8682",
+      "emergency_contact": {
+        "name": "Christopher Hernandez",
+        "relationship": "Parent",
+        "phone": "+1-705-743-9177"
+      },
+      "skills": [
+        "Python",
+        "Communication",
+        "Agile",
+        "JavaScript",
+        "Node.js"
+      ],
+      "performance_rating": "Good",
+      "vacation_days_remaining": 18,
+      "benefits": {
+        "health_insurance": true,
+        "dental_insurance": false,
+        "vision_insurance": true,
+        "401k_enrolled": false,
+        "stock_options": false
+      },
+      "access_level": "Manager",
+      "status": "Active",
+      "projects": [
+        {
+          "project_id": "PROJ018",
+          "project_name": "Project Gamma",
+          "role_in_project": "Lead",
+          "start_date": "2024-12-17"
+        },
+        {
+          "project_id": "PROJ011",
+          "project_name": "Project Phoenix",
+          "role_in_project": "Contributor",
+          "start_date": "2024-03-15"
+        }
+      ]
+    },
+    {
+      "employee_id": "EMP0028",
+      "first_name": "David",
+      "last_name": "Taylor",
+      "email": "christopher.martinez@company.com",
+      "department": "Sales",
+      "role": "IT Specialist",
+      "manager_id": "EMP0010",
+      "hire_date": "2022-01-28",
+      "salary": 140395,
+      "location": "Berlin",
+      "phone": "+1-952-139-7311",
+      "emergency_contact": {
+        "name": "Charles Garcia",
+        "relationship": "Spouse",
+        "phone": "+1-450-482-2511"
+      },
+      "skills": [
+        "SQL",
+        "Data Analysis",
+        "Cloud Computing"
+      ],
+      "performance_rating": "Good",
+      "vacation_days_remaining": 1,
+      "benefits": {
+        "health_insurance": true,
+        "dental_insurance": true,
+        "vision_insurance": true,
+        "401k_enrolled": false,
+        "stock_options": true
+      },
+      "access_level": "Administration",
+      "status": "On Leave",
+      "projects": [
+        {
+          "project_id": "PROJ016",
+          "project_name": "Project Beta",
+          "role_in_project": "Contributor",
+          "start_date": "2023-04-06"
+        }
+      ]
+    },
+    {
+      "employee_id": "EMP0029",
+      "first_name": "James",
+      "last_name": "Anderson",
+      "email": "michael.johnson@company.com",
+      "department": "Finance",
+      "role": "Director",
+      "manager_id": "EMP0008",
+      "hire_date": "2024-03-05",
+      "salary": 74242,
+      "location": "Singapore",
+      "phone": "+1-380-541-9858",
+      "emergency_contact": {
+        "name": "Richard Anderson",
+        "relationship": "Parent",
+        "phone": "+1-959-971-8129"
+      },
+      "skills": [
+        "DevOps",
+        "Python",
+        "Cloud Computing",
+        "Java"
+      ],
+      "performance_rating": "Needs Improvement",
+      "vacation_days_remaining": 11,
+      "benefits": {
+        "health_insurance": true,
+        "dental_insurance": false,
+        "vision_insurance": true,
+        "401k_enrolled": false,
+        "stock_options": false
+      },
+      "access_level": "Employee",
+      "status": "Active",
+      "projects": [
+        {
+          "project_id": "PROJ013",
+          "project_name": "Project Delta",
+          "role_in_project": "Contributor",
+          "start_date": "2023-06-19"
+        },
+        {
+          "project_id": "PROJ019",
+          "project_name": "Project Titan",
+          "role_in_project": "Lead",
+          "start_date": "2024-10-06"
+        },
+        {
+          "project_id": "PROJ001",
+          "project_name": "Project Alpha",
+          "role_in_project": "Lead",
+          "start_date": "2023-02-26"
+        }
+      ]
+    },
+    {
+      "employee_id": "EMP0030",
+      "first_name": "Sarah",
+      "last_name": "Rodriguez",
+      "email": "maria.wilson@company.com",
+      "department": "Operations",
+      "role": "Software Engineer",
+      "manager_id": "EMP0004",
+      "hire_date": "2020-04-20",
+      "salary": 154663,
+      "location": "London",
+      "phone": "+1-100-737-4069",
+      "emergency_contact": {
+        "name": "David Martinez",
+        "relationship": "Friend",
+        "phone": "+1-950-473-4794"
+      },
+      "skills": [
+        "Communication",
+        "SQL",
+        "Cloud Computing",
+        "Java"
+      ],
+      "performance_rating": "Excellent",
+      "vacation_days_remaining": 3,
+      "benefits": {
+        "health_insurance": true,
+        "dental_insurance": true,
+        "vision_insurance": true,
+        "401k_enrolled": true,
+        "stock_options": false
+      },
+      "access_level": "Employee",
+      "status": "On Leave",
+      "projects": [
+        {
+          "project_id": "PROJ006",
+          "project_name": "Project Phoenix",
+          "role_in_project": "Lead",
+          "start_date": "2023-08-26"
+        },
+        {
+          "project_id": "PROJ001",
+          "project_name": "Project Delta",
+          "role_in_project": "Contributor",
+          "start_date": "2024-01-12"
+        },
+        {
+          "project_id": "PROJ002",
+          "project_name": "Project Beta",
+          "role_in_project": "Contributor",
+          "start_date": "2023-10-27"
+        }
+      ]
+    },
+    {
+      "employee_id": "EMP0031",
+      "first_name": "Emily",
+      "last_name": "Wilson",
+      "email": "david.rodriguez@company.com",
+      "department": "Human Resources",
+      "role": "Manager",
+      "manager_id": "EMP0005",
+      "hire_date": "2019-12-12",
+      "salary": 85899,
+      "location": "Singapore",
+      "phone": "+1-254-610-1147",
+      "emergency_contact": {
+        "name": "Christopher Lopez",
+        "relationship": "Friend",
+        "phone": "+1-200-960-3197"
+      },
+      "skills": [
+        "Leadership",
+        "React",
+        "Project Management"
+      ],
+      "performance_rating": "Excellent",
+      "vacation_days_remaining": 12,
+      "benefits": {
+        "health_insurance": true,
+        "dental_insurance": true,
+        "vision_insurance": false,
+        "401k_enrolled": true,
+        "stock_options": true
+      },
+      "access_level": "Manager",
+      "status": "Active",
+      "projects": [
+        {
+          "project_id": "PROJ012",
+          "project_name": "Project Alpha",
+          "role_in_project": "Contributor",
+          "start_date": "2024-02-19"
+        },
+        {
+          "project_id": "PROJ005",
+          "project_name": "Project Delta",
+          "role_in_project": "Contributor",
+          "start_date": "2023-02-26"
+        },
+        {
+          "project_id": "PROJ010",
+          "project_name": "Project Beta",
+          "role_in_project": "Lead",
+          "start_date": "2023-12-28"
+        }
+      ]
+    },
+    {
+      "employee_id": "EMP0032",
+      "first_name": "Robert",
+      "last_name": "Wilson",
+      "email": "richard.gonzalez@company.com",
+      "department": "Engineering",
+      "role": "Team Lead",
+      "manager_id": "EMP0005",
+      "hire_date": "2024-11-13",
+      "salary": 164765,
+      "location": "London",
+      "phone": "+1-484-870-8935",
+      "emergency_contact": {
+        "name": "Michelle Gonzalez",
+        "relationship": "Sibling",
+        "phone": "+1-777-541-6217"
+      },
+      "skills": [
+        "Communication",
+        "Machine Learning",
+        "JavaScript"
+      ],
+      "performance_rating": "Good",
+      "vacation_days_remaining": 23,
+      "benefits": {
+        "health_insurance": true,
+        "dental_insurance": true,
+        "vision_insurance": false,
+        "401k_enrolled": true,
+        "stock_options": true
+      },
+      "access_level": "Employee",
+      "status": "Active",
+      "projects": [
+        {
+          "project_id": "PROJ012",
+          "project_name": "Project Gamma",
+          "role_in_project": "Developer",
+          "start_date": "2023-10-11"
+        },
+        {
+          "project_id": "PROJ011",
+          "project_name": "Project Alpha",
+          "role_in_project": "Developer",
+          "start_date": "2023-11-20"
+        }
+      ]
+    },
+    {
+      "employee_id": "EMP0033",
+      "first_name": "William",
+      "last_name": "Thomas",
+      "email": "lisa.garcia@company.com",
+      "department": "Finance",
+      "role": "Legal Counsel",
+      "manager_id": "EMP0006",
+      "hire_date": "2019-09-20",
+      "salary": 182377,
+      "location": "Mumbai",
+      "phone": "+1-499-690-4463",
+      "emergency_contact": {
+        "name": "John Brown",
+        "relationship": "Parent",
+        "phone": "+1-307-735-1176"
+      },
+      "skills": [
+        "Project Management",
+        "Node.js",
+        "SQL",
+        "Machine Learning",
+        "Communication"
+      ],
+      "performance_rating": "Excellent",
+      "vacation_days_remaining": 18,
+      "benefits": {
+        "health_insurance": true,
+        "dental_insurance": true,
+        "vision_insurance": true,
+        "401k_enrolled": true,
+        "stock_options": true
+      },
+      "access_level": "Employee",
+      "status": "Active",
+      "projects": [
+        {
+          "project_id": "PROJ007",
+          "project_name": "Project Phoenix",
+          "role_in_project": "Contributor",
+          "start_date": "2024-04-22"
+        }
+      ]
+    },
+    {
+      "employee_id": "EMP0034",
+      "first_name": "William",
+      "last_name": "Williams",
+      "email": "william.gonzalez@company.com",
+      "department": "IT Support",
+      "role": "Sales Representative",
+      "manager_id": "EMP0004",
+      "hire_date": "2020-12-11",
+      "salary": 70069,
+      "location": "Sydney",
+      "phone": "+1-442-190-4091",
+      "emergency_contact": {
+        "name": "Michelle Smith",
+        "relationship": "Spouse",
+        "phone": "+1-918-956-3944"
+      },
+      "skills": [
+        "Python",
+        "SQL",
+        "Machine Learning",
+        "Leadership"
+      ],
+      "performance_rating": "Satisfactory",
+      "vacation_days_remaining": 17,
+      "benefits": {
+        "health_insurance": true,
+        "dental_insurance": true,
+        "vision_insurance": false,
+        "401k_enrolled": false,
+        "stock_options": true
+      },
+      "access_level": "Employee",
+      "status": "Active",
+      "projects": [
+        {
+          "project_id": "PROJ005",
+          "project_name": "Project Delta",
+          "role_in_project": "Developer",
+          "start_date": "2024-08-04"
+        },
+        {
+          "project_id": "PROJ018",
+          "project_name": "Project Beta",
+          "role_in_project": "Developer",
+          "start_date": "2024-02-10"
+        },
+        {
+          "project_id": "PROJ010",
+          "project_name": "Project Delta",
+          "role_in_project": "Developer",
+          "start_date": "2023-08-22"
+        }
+      ]
+    },
+    {
+      "employee_id": "EMP0035",
+      "first_name": "Sarah",
+      "last_name": "Thomas",
+      "email": "charles.rodriguez@company.com",
+      "department": "Operations",
+      "role": "Software Engineer",
+      "manager_id": "EMP0004",
+      "hire_date": "2024-12-01",
+      "salary": 165684,
+      "location": "Singapore",
+      "phone": "+1-866-659-8717",
+      "emergency_contact": {
+        "name": "Charles Davis",
+        "relationship": "Friend",
+        "phone": "+1-517-542-6358"
+      },
+      "skills": [
+        "Project Management",
+        "Machine Learning",
+        "JavaScript",
+        "Communication",
+        "Node.js"
+      ],
+      "performance_rating": "Satisfactory",
+      "vacation_days_remaining": 21,
+      "benefits": {
+        "health_insurance": true,
+        "dental_insurance": true,
+        "vision_insurance": false,
+        "401k_enrolled": true,
+        "stock_options": true
+      },
+      "access_level": "Employee",
+      "status": "Active",
+      "projects": [
+        {
+          "project_id": "PROJ011",
+          "project_name": "Project Alpha",
+          "role_in_project": "Contributor",
+          "start_date": "2023-09-06"
+        },
+        {
+          "project_id": "PROJ010",
+          "project_name": "Project Gamma",
+          "role_in_project": "Contributor",
+          "start_date": "2024-10-05"
+        }
+      ]
+    },
+    {
+      "employee_id": "EMP0036",
+      "first_name": "James",
+      "last_name": "Rodriguez",
+      "email": "emily.lopez@company.com",
+      "department": "IT Support",
+      "role": "Director",
+      "manager_id": "EMP0006",
+      "hire_date": "2020-12-10",
+      "salary": 176494,
+      "location": "San Francisco",
+      "phone": "+1-212-824-7368",
+      "emergency_contact": {
+        "name": "Christopher Wilson",
+        "relationship": "Spouse",
+        "phone": "+1-917-973-2069"
+      },
+      "skills": [
+        "Communication",
+        "Agile",
+        "React",
+        "Python",
+        "Data Analysis"
+      ],
+      "performance_rating": "Excellent",
+      "vacation_days_remaining": 9,
+      "benefits": {
+        "health_insurance": true,
+        "dental_insurance": false,
+        "vision_insurance": false,
+        "401k_enrolled": true,
+        "stock_options": true
+      },
+      "access_level": "Manager",
+      "status": "On Leave",
+      "projects": [
+        {
+          "project_id": "PROJ002",
+          "project_name": "Project Gamma",
+          "role_in_project": "Developer",
+          "start_date": "2023-02-27"
+        }
+      ]
+    },
+    {
+      "employee_id": "EMP0037",
+      "first_name": "Robert",
+      "last_name": "Taylor",
+      "email": "lisa.lopez@company.com",
+      "department": "Engineering",
+      "role": "Marketing Specialist",
+      "manager_id": "EMP0010",
+      "hire_date": "2024-07-12",
+      "salary": 56789,
+      "location": "Sydney",
+      "phone": "+1-442-976-2681",
+      "emergency_contact": {
+        "name": "Jennifer Thomas",
+        "relationship": "Parent",
+        "phone": "+1-479-892-4386"
+      },
+      "skills": [
+        "Java",
+        "SQL",
+        "Agile",
+        "Python"
+      ],
+      "performance_rating": "Excellent",
+      "vacation_days_remaining": 17,
+      "benefits": {
+        "health_insurance": true,
+        "dental_insurance": true,
+        "vision_insurance": false,
+        "401k_enrolled": true,
+        "stock_options": false
+      },
+      "access_level": "Administration",
+      "status": "Active",
+      "projects": [
+        {
+          "project_id": "PROJ001",
+          "project_name": "Project Delta",
+          "role_in_project": "Developer",
+          "start_date": "2023-12-10"
+        },
+        {
+          "project_id": "PROJ017",
+          "project_name": "Project Alpha",
+          "role_in_project": "Developer",
+          "start_date": "2023-04-01"
+        }
+      ]
+    },
+    {
+      "employee_id": "EMP0038",
+      "first_name": "Charles",
+      "last_name": "Taylor",
+      "email": "maria.johnson@company.com",
+      "department": "Engineering",
+      "role": "Manager",
+      "manager_id": "EMP0001",
+      "hire_date": "2019-07-23",
+      "salary": 106124,
+      "location": "Berlin",
+      "phone": "+1-591-614-7855",
+      "emergency_contact": {
+        "name": "James Wilson",
+        "relationship": "Spouse",
+        "phone": "+1-443-435-2469"
+      },
+      "skills": [
+        "Machine Learning",
+        "Java",
+        "Data Analysis",
+        "Python"
+      ],
+      "performance_rating": "Excellent",
+      "vacation_days_remaining": 24,
+      "benefits": {
+        "health_insurance": true,
+        "dental_insurance": true,
+        "vision_insurance": false,
+        "401k_enrolled": true,
+        "stock_options": false
+      },
+      "access_level": "Employee",
+      "status": "Active",
+      "projects": [
+        {
+          "project_id": "PROJ012",
+          "project_name": "Project Phoenix",
+          "role_in_project": "Lead",
+          "start_date": "2024-11-01"
+        }
+      ]
+    },
+    {
+      "employee_id": "EMP0039",
+      "first_name": "James",
+      "last_name": "Davis",
+      "email": "michelle.miller@company.com",
+      "department": "Human Resources",
+      "role": "Manager",
+      "manager_id": "EMP0006",
+      "hire_date": "2022-11-16",
+      "salary": 157895,
+      "location": "Toronto",
+      "phone": "+1-742-841-6099",
+      "emergency_contact": {
+        "name": "William Thomas",
+        "relationship": "Friend",
+        "phone": "+1-355-912-9226"
+      },
+      "skills": [
+        "Agile",
+        "Java",
+        "Cloud Computing",
+        "Project Management",
+        "Python",
+        "SQL"
+      ],
+      "performance_rating": "Satisfactory",
+      "vacation_days_remaining": 4,
+      "benefits": {
+        "health_insurance": true,
+        "dental_insurance": false,
+        "vision_insurance": true,
+        "401k_enrolled": false,
+        "stock_options": true
+      },
+      "access_level": "Manager",
+      "status": "On Leave",
+      "projects": [
+        {
+          "project_id": "PROJ020",
+          "project_name": "Project Titan",
+          "role_in_project": "Lead",
+          "start_date": "2023-06-18"
+        },
+        {
+          "project_id": "PROJ015",
+          "project_name": "Project Beta",
+          "role_in_project": "Contributor",
+          "start_date": "2024-03-01"
+        },
+        {
+          "project_id": "PROJ017",
+          "project_name": "Project Delta",
+          "role_in_project": "Lead",
+          "start_date": "2023-02-03"
+        }
+      ]
+    },
+    {
+      "employee_id": "EMP0040",
+      "first_name": "William",
+      "last_name": "Brown",
+      "email": "david.jones@company.com",
+      "department": "Marketing",
+      "role": "Legal Counsel",
+      "manager_id": "EMP0010",
+      "hire_date": "2020-03-27",
+      "salary": 182760,
+      "location": "Singapore",
+      "phone": "+1-167-587-8394",
+      "emergency_contact": {
+        "name": "Jane Taylor",
+        "relationship": "Friend",
+        "phone": "+1-820-190-6731"
+      },
+      "skills": [
+        "Cloud Computing",
+        "Agile",
+        "JavaScript",
+        "Node.js",
+        "DevOps"
+      ],
+      "performance_rating": "Good",
+      "vacation_days_remaining": 5,
+      "benefits": {
+        "health_insurance": true,
+        "dental_insurance": false,
+        "vision_insurance": false,
+        "401k_enrolled": true,
+        "stock_options": true
+      },
+      "access_level": "Employee",
+      "status": "On Leave",
+      "projects": [
+        {
+          "project_id": "PROJ003",
+          "project_name": "Project Alpha",
+          "role_in_project": "Lead",
+          "start_date": "2023-04-04"
+        },
+        {
+          "project_id": "PROJ013",
+          "project_name": "Project Alpha",
+          "role_in_project": "Lead",
+          "start_date": "2024-01-01"
+        },
+        {
+          "project_id": "PROJ004",
+          "project_name": "Project Delta",
+          "role_in_project": "Developer",
+          "start_date": "2023-12-07"
+        }
+      ]
+    },
+    {
+      "employee_id": "EMP0041",
+      "first_name": "Linda",
+      "last_name": "Brown",
+      "email": "jennifer.anderson@company.com",
+      "department": "Engineering",
+      "role": "Director",
+      "manager_id": "EMP0004",
+      "hire_date": "2020-10-04",
+      "salary": 84261,
+      "location": "London",
+      "phone": "+1-851-542-5606",
+      "emergency_contact": {
+        "name": "Jennifer Martinez",
+        "relationship": "Parent",
+        "phone": "+1-710-850-6391"
+      },
+      "skills": [
+        "Cloud Computing",
+        "Java",
+        "Machine Learning",
+        "Node.js",
+        "Project Management"
+      ],
+      "performance_rating": "Satisfactory",
+      "vacation_days_remaining": 12,
+      "benefits": {
+        "health_insurance": true,
+        "dental_insurance": true,
+        "vision_insurance": false,
+        "401k_enrolled": false,
+        "stock_options": false
+      },
+      "access_level": "Manager",
+      "status": "Active",
+      "projects": [
+        {
+          "project_id": "PROJ012",
+          "project_name": "Project Gamma",
+          "role_in_project": "Developer",
+          "start_date": "2023-12-25"
+        },
+        {
+          "project_id": "PROJ006",
+          "project_name": "Project Alpha",
+          "role_in_project": "Contributor",
+          "start_date": "2024-02-07"
+        }
+      ]
+    },
+    {
+      "employee_id": "EMP0042",
+      "first_name": "Linda",
+      "last_name": "Johnson",
+      "email": "linda.anderson@company.com",
+      "department": "Operations",
+      "role": "HR Specialist",
+      "manager_id": "EMP0010",
+      "hire_date": "2021-03-06",
+      "salary": 172147,
+      "location": "London",
+      "phone": "+1-384-995-6826",
+      "emergency_contact": {
+        "name": "William Anderson",
+        "relationship": "Sibling",
+        "phone": "+1-826-144-2783"
+      },
+      "skills": [
+        "Data Analysis",
+        "Machine Learning",
+        "Leadership"
+      ],
+      "performance_rating": "Good",
+      "vacation_days_remaining": 8,
+      "benefits": {
+        "health_insurance": true,
+        "dental_insurance": true,
+        "vision_insurance": false,
+        "401k_enrolled": false,
+        "stock_options": false
+      },
+      "access_level": "Employee",
+      "status": "Active",
+      "projects": [
+        {
+          "project_id": "PROJ004",
+          "project_name": "Project Titan",
+          "role_in_project": "Developer",
+          "start_date": "2023-06-25"
+        },
+        {
+          "project_id": "PROJ012",
+          "project_name": "Project Delta",
+          "role_in_project": "Lead",
+          "start_date": "2024-12-02"
+        },
+        {
+          "project_id": "PROJ004",
+          "project_name": "Project Titan",
+          "role_in_project": "Lead",
+          "start_date": "2023-11-25"
+        }
+      ]
+    },
+    {
+      "employee_id": "EMP0043",
+      "first_name": "Richard",
+      "last_name": "Johnson",
+      "email": "emily.williams@company.com",
+      "department": "Legal",
+      "role": "IT Specialist",
+      "manager_id": "EMP0008",
+      "hire_date": "2018-09-09",
+      "salary": 125859,
+      "location": "New York",
+      "phone": "+1-327-521-6218",
+      "emergency_contact": {
+        "name": "James Smith",
+        "relationship": "Sibling",
+        "phone": "+1-920-121-4376"
+      },
+      "skills": [
+        "JavaScript",
+        "SQL",
+        "Machine Learning",
+        "Data Analysis",
+        "Java"
+      ],
+      "performance_rating": "Satisfactory",
+      "vacation_days_remaining": 18,
+      "benefits": {
+        "health_insurance": true,
+        "dental_insurance": true,
+        "vision_insurance": true,
+        "401k_enrolled": true,
+        "stock_options": true
+      },
+      "access_level": "Administration",
+      "status": "Active",
+      "projects": [
+        {
+          "project_id": "PROJ013",
+          "project_name": "Project Alpha",
+          "role_in_project": "Lead",
+          "start_date": "2024-08-14"
+        },
+        {
+          "project_id": "PROJ006",
+          "project_name": "Project Beta",
+          "role_in_project": "Developer",
+          "start_date": "2023-05-15"
+        }
+      ]
+    },
+    {
+      "employee_id": "EMP0044",
+      "first_name": "Jane",
+      "last_name": "Taylor",
+      "email": "robert.lopez@company.com",
+      "department": "Human Resources",
+      "role": "Operations Coordinator",
+      "manager_id": "EMP0006",
+      "hire_date": "2024-04-08",
+      "salary": 194740,
+      "location": "Sydney",
+      "phone": "+1-619-986-4108",
+      "emergency_contact": {
+        "name": "William Gonzalez",
+        "relationship": "Sibling",
+        "phone": "+1-251-940-3793"
+      },
+      "skills": [
+        "Python",
+        "Data Analysis",
+        "Leadership",
+        "JavaScript",
+        "SQL",
+        "Project Management"
+      ],
+      "performance_rating": "Satisfactory",
+      "vacation_days_remaining": 4,
+      "benefits": {
+        "health_insurance": true,
+        "dental_insurance": false,
+        "vision_insurance": true,
+        "401k_enrolled": false,
+        "stock_options": false
+      },
+      "access_level": "Employee",
+      "status": "On Leave",
+      "projects": [
+        {
+          "project_id": "PROJ008",
+          "project_name": "Project Titan",
+          "role_in_project": "Contributor",
+          "start_date": "2023-11-21"
+        },
+        {
+          "project_id": "PROJ002",
+          "project_name": "Project Titan",
+          "role_in_project": "Developer",
+          "start_date": "2024-09-18"
+        },
+        {
+          "project_id": "PROJ006",
+          "project_name": "Project Alpha",
+          "role_in_project": "Lead",
+          "start_date": "2024-12-27"
+        }
+      ]
+    },
+    {
+      "employee_id": "EMP0045",
+      "first_name": "Linda",
+      "last_name": "Miller",
+      "email": "jennifer.martinez@company.com",
+      "department": "Sales",
+      "role": "Senior Software Engineer",
+      "manager_id": "EMP0008",
+      "hire_date": "2018-08-25",
+      "salary": 96046,
+      "location": "London",
+      "phone": "+1-724-344-6485",
+      "emergency_contact": {
+        "name": "Patricia Lopez",
+        "relationship": "Parent",
+        "phone": "+1-455-613-5811"
+      },
+      "skills": [
+        "DevOps",
+        "Agile",
+        "Node.js",
+        "SQL",
+        "JavaScript",
+        "Cloud Computing"
+      ],
+      "performance_rating": "Satisfactory",
+      "vacation_days_remaining": 2,
+      "benefits": {
+        "health_insurance": true,
+        "dental_insurance": true,
+        "vision_insurance": true,
+        "401k_enrolled": true,
+        "stock_options": true
+      },
+      "access_level": "Administration",
+      "status": "On Leave",
+      "projects": [
+        {
+          "project_id": "PROJ012",
+          "project_name": "Project Alpha",
+          "role_in_project": "Lead",
+          "start_date": "2024-08-13"
+        },
+        {
+          "project_id": "PROJ016",
+          "project_name": "Project Alpha",
+          "role_in_project": "Lead",
+          "start_date": "2023-06-02"
+        }
+      ]
+    },
+    {
+      "employee_id": "EMP0046",
+      "first_name": "Charles",
+      "last_name": "Johnson",
+      "email": "sarah.williams@company.com",
+      "department": "Marketing",
+      "role": "Manager",
+      "manager_id": "EMP0003",
+      "hire_date": "2023-02-19",
+      "salary": 95372,
+      "location": "Mumbai",
+      "phone": "+1-482-841-8541",
+      "emergency_contact": {
+        "name": "Lisa Taylor",
+        "relationship": "Sibling",
+        "phone": "+1-948-567-3806"
+      },
+      "skills": [
+        "Communication",
+        "SQL",
+        "Data Analysis",
+        "JavaScript",
+        "Python",
+        "Cloud Computing"
+      ],
+      "performance_rating": "Satisfactory",
+      "vacation_days_remaining": 6,
+      "benefits": {
+        "health_insurance": true,
+        "dental_insurance": true,
+        "vision_insurance": true,
+        "401k_enrolled": true,
+        "stock_options": true
+      },
+      "access_level": "Manager",
+      "status": "Active",
+      "projects": [
+        {
+          "project_id": "PROJ019",
+          "project_name": "Project Alpha",
+          "role_in_project": "Contributor",
+          "start_date": "2023-11-04"
+        }
+      ]
+    },
+    {
+      "employee_id": "EMP0047",
+      "first_name": "David",
+      "last_name": "Williams",
+      "email": "linda.jones@company.com",
+      "department": "Operations",
+      "role": "Software Engineer",
+      "manager_id": "EMP0006",
+      "hire_date": "2021-12-15",
+      "salary": 192667,
+      "location": "Sydney",
+      "phone": "+1-734-760-9174",
+      "emergency_contact": {
+        "name": "Linda Martinez",
+        "relationship": "Sibling",
+        "phone": "+1-584-215-2615"
+      },
+      "skills": [
+        "SQL",
+        "DevOps",
+        "React",
+        "JavaScript",
+        "Node.js"
+      ],
+      "performance_rating": "Good",
+      "vacation_days_remaining": 1,
+      "benefits": {
+        "health_insurance": true,
+        "dental_insurance": true,
+        "vision_insurance": true,
+        "401k_enrolled": true,
+        "stock_options": false
+      },
+      "access_level": "Manager",
+      "status": "Active",
+      "projects": [
+        {
+          "project_id": "PROJ013",
+          "project_name": "Project Gamma",
+          "role_in_project": "Lead",
+          "start_date": "2023-09-14"
+        },
+        {
+          "project_id": "PROJ006",
+          "project_name": "Project Phoenix",
+          "role_in_project": "Reviewer",
+          "start_date": "2023-02-14"
+        }
+      ]
+    },
+    {
+      "employee_id": "EMP0048",
+      "first_name": "Linda",
+      "last_name": "Jones",
+      "email": "richard.davis@company.com",
+      "department": "Finance",
+      "role": "Legal Counsel",
+      "manager_id": "EMP0008",
+      "hire_date": "2021-07-09",
+      "salary": 147215,
+      "location": "San Francisco",
+      "phone": "+1-493-913-3172",
+      "emergency_contact": {
+        "name": "Michelle Williams",
+        "relationship": "Spouse",
+        "phone": "+1-330-401-3882"
+      },
+      "skills": [
+        "DevOps",
+        "Communication",
+        "Data Analysis",
+        "Leadership",
+        "Java"
+      ],
+      "performance_rating": "Excellent",
+      "vacation_days_remaining": 13,
+      "benefits": {
+        "health_insurance": true,
+        "dental_insurance": false,
+        "vision_insurance": false,
+        "401k_enrolled": false,
+        "stock_options": false
+      },
+      "access_level": "Manager",
+      "status": "Active",
+      "projects": [
+        {
+          "project_id": "PROJ011",
+          "project_name": "Project Gamma",
+          "role_in_project": "Contributor",
+          "start_date": "2024-09-03"
+        },
+        {
+          "project_id": "PROJ012",
+          "project_name": "Project Delta",
+          "role_in_project": "Developer",
+          "start_date": "2023-01-28"
+        },
+        {
+          "project_id": "PROJ009",
+          "project_name": "Project Gamma",
+          "role_in_project": "Reviewer",
+          "start_date": "2023-04-11"
+        }
+      ]
+    },
+    {
+      "employee_id": "EMP0049",
+      "first_name": "John",
+      "last_name": "Anderson",
+      "email": "jane.anderson@company.com",
+      "department": "Finance",
+      "role": "HR Specialist",
+      "manager_id": "EMP0004",
+      "hire_date": "2020-02-11",
+      "salary": 147348,
+      "location": "Singapore",
+      "phone": "+1-490-467-2415",
+      "emergency_contact": {
+        "name": "Linda Thomas",
+        "relationship": "Friend",
+        "phone": "+1-692-835-2777"
+      },
+      "skills": [
+        "JavaScript",
+        "DevOps",
+        "Python",
+        "Leadership",
+        "Agile"
+      ],
+      "performance_rating": "Satisfactory",
+      "vacation_days_remaining": 0,
+      "benefits": {
+        "health_insurance": true,
+        "dental_insurance": true,
+        "vision_insurance": false,
+        "401k_enrolled": true,
+        "stock_options": true
+      },
+      "access_level": "Employee",
+      "status": "Active",
+      "projects": [
+        {
+          "project_id": "PROJ018",
+          "project_name": "Project Beta",
+          "role_in_project": "Lead",
+          "start_date": "2023-02-15"
+        },
+        {
+          "project_id": "PROJ017",
+          "project_name": "Project Gamma",
+          "role_in_project": "Contributor",
+          "start_date": "2023-09-13"
+        },
+        {
+          "project_id": "PROJ011",
+          "project_name": "Project Titan",
+          "role_in_project": "Lead",
+          "start_date": "2023-10-02"
+        }
+      ]
+    },
+    {
+      "employee_id": "EMP0050",
+      "first_name": "Linda",
+      "last_name": "Garcia",
+      "email": "jane.jones@company.com",
+      "department": "Marketing",
+      "role": "Manager",
+      "manager_id": "EMP0004",
+      "hire_date": "2019-05-11",
+      "salary": 137069,
+      "location": "Toronto",
+      "phone": "+1-597-945-4618",
+      "emergency_contact": {
+        "name": "Lisa Taylor",
+        "relationship": "Sibling",
+        "phone": "+1-834-468-3123"
+      },
+      "skills": [
+        "Communication",
+        "Data Analysis",
+        "JavaScript",
+        "SQL"
+      ],
+      "performance_rating": "Excellent",
+      "vacation_days_remaining": 5,
+      "benefits": {
+        "health_insurance": true,
+        "dental_insurance": false,
+        "vision_insurance": false,
+        "401k_enrolled": false,
+        "stock_options": false
+      },
+      "access_level": "Administration",
+      "status": "Active",
+      "projects": [
+        {
+          "project_id": "PROJ020",
+          "project_name": "Project Beta",
+          "role_in_project": "Lead",
+          "start_date": "2024-05-17"
+        },
+        {
+          "project_id": "PROJ011",
+          "project_name": "Project Delta",
+          "role_in_project": "Contributor",
+          "start_date": "2024-11-06"
+        }
+      ]
+    }
+  ],
+  "policies": [
+    {
+      "policy_id": "POL001",
+      "title": "Remote Work Policy",
+      "category": "Workplace Policies",
+      "effective_date": "2024-01-15",
+      "description": "Guidelines for remote work arrangements, eligibility criteria, and performance expectations.",
+      "details": "Employees may work remotely up to 3 days per week with manager approval. Remote work eligibility requires 6+ months tenure and satisfactory performance ratings.",
+      "applicable_roles": [
+        "All Employees"
+      ],
+      "approval_required": "Manager",
+      "violations_consequences": "Progressive disciplinary action"
+    },
+    {
+      "policy_id": "POL002",
+      "title": "Vacation and Leave Policy",
+      "category": "Time Off",
+      "effective_date": "2024-01-01",
+      "description": "Annual leave, sick leave, and other time-off policies including accrual rates and approval process.",
+      "details": "Employees accrue 2 weeks vacation in first year, 3 weeks after 2 years, 4 weeks after 5 years. Sick leave is unlimited but requires medical documentation for absences over 3 days.",
+      "applicable_roles": [
+        "All Employees"
+      ],
+      "approval_required": "Manager",
+      "violations_consequences": "Disciplinary action for policy violations"
+    },
+    {
+      "policy_id": "POL003",
+      "title": "Code of Conduct",
+      "category": "Ethics and Compliance",
+      "effective_date": "2024-01-01",
+      "description": "Professional behavior standards, ethical guidelines, and compliance requirements for all employees.",
+      "details": "All employees must maintain professional conduct, respect diversity, and report any ethical violations through proper channels.",
+      "applicable_roles": [
+        "All Employees"
+      ],
+      "approval_required": "HR",
+      "violations_consequences": "Termination for serious violations"
+    },
+    {
+      "policy_id": "POL004",
+      "title": "Data Security and Privacy",
+      "category": "Information Security",
+      "effective_date": "2024-02-01",
+      "description": "Guidelines for handling confidential information, data protection, and cybersecurity best practices.",
+      "details": "Employees must use strong passwords, enable 2FA, and never share confidential data outside authorized channels. Regular security training is mandatory.",
+      "applicable_roles": [
+        "All Employees"
+      ],
+      "approval_required": "IT Security",
+      "violations_consequences": "Immediate termination for data breaches"
+    },
+    {
+      "policy_id": "POL005",
+      "title": "Performance Review Process",
+      "category": "Performance Management",
+      "effective_date": "2024-01-01",
+      "description": "Annual and quarterly performance review procedures, goal setting, and career development planning.",
+      "details": "Annual reviews conducted each December with quarterly check-ins. Goals set jointly by employee and manager using SMART criteria.",
+      "applicable_roles": [
+        "All Employees"
+      ],
+      "approval_required": "Manager and HR",
+      "violations_consequences": "Performance improvement plans for poor ratings"
+    }
+  ],
+  "training_programs": [
+    {
+      "program_id": "TRN001",
+      "title": "Leadership Development Program",
+      "category": "Leadership",
+      "duration_hours": 40,
+      "format": "Blended (Online + In-person)",
+      "eligibility": "Managers and Senior Individual Contributors",
+      "description": "Comprehensive leadership training covering team management, strategic thinking, and decision-making skills.",
+      "prerequisites": "2+ years experience, Manager recommendation",
+      "completion_rate": 85,
+      "next_session_date": "2024-10-15"
+    },
+    {
+      "program_id": "TRN002",
+      "title": "Cybersecurity Awareness Training",
+      "category": "Security",
+      "duration_hours": 4,
+      "format": "Online",
+      "eligibility": "All Employees",
+      "description": "Mandatory annual training on cybersecurity best practices, phishing awareness, and data protection.",
+      "prerequisites": "None",
+      "completion_rate": 98,
+      "next_session_date": "Ongoing"
+    },
+    {
+      "program_id": "TRN003",
+      "title": "Technical Skills Bootcamp",
+      "category": "Technical",
+      "duration_hours": 80,
+      "format": "In-person",
+      "eligibility": "Engineering Team",
+      "description": "Intensive training on latest technologies, frameworks, and development methodologies.",
+      "prerequisites": "Engineering role, Manager approval",
+      "completion_rate": 92,
+      "next_session_date": "2024-11-01"
+    }
+  ],
+  "departments": {
+    "Engineering": {
+      "head": "Sarah Johnson",
+      "budget": 5000000,
+      "team_size": 120,
+      "focus_areas": [
+        "Software Development",
+        "DevOps",
+        "Quality Assurance"
+      ]
+    },
+    "Human Resources": {
+      "head": "Michael Brown",
+      "budget": 800000,
+      "team_size": 15,
+      "focus_areas": [
+        "Recruitment",
+        "Employee Relations",
+        "Compensation & Benefits"
+      ]
+    },
+    "Sales": {
+      "head": "Emily Davis",
+      "budget": 2000000,
+      "team_size": 45,
+      "focus_areas": [
+        "Enterprise Sales",
+        "Account Management",
+        "Business Development"
+      ]
+    },
+    "Marketing": {
+      "head": "David Wilson",
+      "budget": 1500000,
+      "team_size": 25,
+      "focus_areas": [
+        "Digital Marketing",
+        "Brand Management",
+        "Content Creation"
+      ]
+    }
+  },
+  "office_locations": {
+    "New York": {
+      "address": "123 Tech Plaza, New York, NY 10001",
+      "capacity": 200,
+      "facilities": [
+        "Cafeteria",
+        "Gym",
+        "Meeting Rooms",
+        "Parking"
+      ]
+    },
+    "San Francisco": {
+      "address": "456 Innovation Drive, San Francisco, CA 94105",
+      "capacity": 150,
+      "facilities": [
+        "Game Room",
+        "Rooftop Terrace",
+        "Meeting Rooms"
+      ]
+    },
+    "London": {
+      "address": "789 Business Center, London EC2A 1AB",
+      "capacity": 100,
+      "facilities": [
+        "Meeting Rooms",
+        "Kitchen",
+        "Quiet Zones"
+      ]
+    }
+  },
+  "benefits": {
+    "health_insurance": {
+      "provider": "HealthPlus",
+      "coverage": "Full family coverage",
+      "employee_contribution": "20%"
+    },
+    "retirement": {
+      "401k_match": "Up to 6% of salary",
+      "vesting_schedule": "4-year graded vesting"
+    },
+    "time_off": {
+      "vacation_days": "15-25 days based on tenure",
+      "sick_leave": "Unlimited with medical documentation",
+      "holidays": "12 company holidays plus floating holidays"
+    }
+  }
+}
