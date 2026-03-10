@@ -1,5 +1,7 @@
 # Root level gitignore for IIC Organizational Chatbot
 
+/server/app/rag
+
 # OS generated files
 .DS_Store
 .DS_Store?
