@@ -1,9 +1,6 @@
-# Database connection placeholder
-# For now, we'll use a simple stub since we're focusing on the RAG system
+from app.core.database import get_db
+
 
 def get_db_connection():
-    """
-    Database connection dependency for FastAPI
-    This is a placeholder - can be implemented later if needed
-    """
-    return None
+    """Backward-compatible alias for the shared SQLAlchemy session dependency."""
+    yield from get_db()

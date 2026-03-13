@@ -3,7 +3,7 @@ from pydantic import BaseModel
 from typing import Optional
 import uuid
 from ..rag.simplified_multi_agent_rag import SimplifiedMultiAgentRAGSystem
-from ..database.database import get_db_connection
+from ..core.database import get_db
 from ..models.chat_models import ChatRequest, ChatResponse
 import logging
 
@@ -66,7 +66,7 @@ async def multi_agent_chat(request: MultiAgentChatRequest):
         raise HTTPException(status_code=500, detail=f"Multi-agent RAG error: {str(e)}")
 
 @router.post("/", response_model=ChatResponse)
-async def chat(request: ChatRequest, db=Depends(get_db_connection)):
+async def chat(request: ChatRequest, db=Depends(get_db)):
     """
     Standard chat endpoint (keeping for backward compatibility)
     """
