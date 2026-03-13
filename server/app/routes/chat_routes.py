@@ -1,10 +1,8 @@
 from fastapi import APIRouter, HTTPException, Depends
-from pydantic import BaseModel
-from typing import Optional
 import uuid
 from ..rag.simplified_multi_agent_rag import SimplifiedMultiAgentRAGSystem
 from ..core.database import get_db
-from ..models.chat_models import ChatRequest, ChatResponse
+from ..models.chat_models import ChatRequest, ChatResponse, MultiAgentChatRequest, MultiAgentChatResponse
 import logging
 
 logger = logging.getLogger(__name__)
@@ -13,16 +11,6 @@ router = APIRouter(prefix="/api/chat", tags=["chat"])
 
 # Initialize the simplified multi-agent RAG system
 rag_system = SimplifiedMultiAgentRAGSystem()
-
-class MultiAgentChatRequest(BaseModel):
-    message: str
-    session_id: Optional[str] = None
-
-class MultiAgentChatResponse(BaseModel):
-    response: str
-    session_id: str
-    agent_used: Optional[str] = None
-    query_analysis: Optional[dict] = None
 
 @router.post("/multi-agent", response_model=MultiAgentChatResponse)
 async def multi_agent_chat(request: MultiAgentChatRequest):
