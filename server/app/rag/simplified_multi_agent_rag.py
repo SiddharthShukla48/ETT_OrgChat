@@ -6,14 +6,11 @@ from typing import List, Dict, Any, Optional
 from datetime import datetime
 import logging
 
-# Set dummy OpenAI API key for CrewAI tools
-os.environ.setdefault("OPENAI_API_KEY", "dummy-key-for-ollama")
-
 # CrewAI imports
 from crewai import Agent, Task, Crew, Process
 
 # LLM imports
-from langchain_community.llms import Ollama
+from langchain_groq import ChatGroq
 
 # Setup logging
 logging.basicConfig(level=logging.INFO)
@@ -137,14 +134,19 @@ class SimplifiedMultiAgentRAGSystem:
     
     def __init__(
         self,
-        ollama_model: str = "llama3.2:1b",
+        groq_model: str = "llama-3.3-70b-versatile",
+        groq_api_key: Optional[str] = None,
         rag_context_path: str = "./RAG_context"
     ):
-        self.ollama_model = ollama_model
+        self.groq_model = groq_model
         self.rag_context_path = rag_context_path
+
+        key = groq_api_key or os.getenv("GROQ_API_KEY")
+        if not key:
+            raise ValueError("GROQ_API_KEY is required to use Groq models")
         
         # Initialize LLM
-        self.llm = Ollama(model=ollama_model, base_url="http://localhost:11434")
+        self.llm = ChatGroq(model=self.groq_model, api_key=key, temperature=0)
         
         # Initialize file tools
         self._setup_file_tools()
@@ -333,7 +335,8 @@ Instructions:
 Answer:"""
 
                 try:
-                    final_response = self.llm.invoke(prompt)
+                    llm_response = self.llm.invoke(prompt)
+                    final_response = getattr(llm_response, "content", str(llm_response))
                 except Exception as llm_error:
                     logger.error(f"LLM processing error: {llm_error}")
                     final_response = "\n\n".join(context_parts)  # Fallback to raw data

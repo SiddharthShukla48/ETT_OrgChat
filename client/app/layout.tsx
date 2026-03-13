@@ -8,7 +8,7 @@ import './globals.css'
 
 export const metadata: Metadata = {
   title: 'IIC Organizational Chatbot',
-  description: 'AI-powered offline organizational assistant with role-based access control',
+  description: 'AI-powered organizational assistant with role-based access control and Groq-backed inference',
   generator: 'IIC Two Men Squad',
 }
 

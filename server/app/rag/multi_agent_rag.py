@@ -5,9 +5,6 @@ from datetime import datetime
 import logging
 import json
 
-# Set dummy OpenAI API key for CrewAI tools (even when using Ollama)
-os.environ.setdefault("OPENAI_API_KEY", "dummy-key-for-ollama")
-
 # CrewAI imports
 from crewai import Agent, Task, Crew, Process
 from crewai_tools import (
@@ -21,9 +18,6 @@ from crewai_tools import (
 from crewai.rag.config.utils import set_rag_config, get_rag_client, clear_rag_config
 from crewai.rag.chromadb.config import ChromaDBConfig
 
-# LLM imports
-from langchain_community.llms import Ollama
-
 # Setup logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -34,11 +28,17 @@ class MultiAgentRAGSystem:
     
     def __init__(
         self,
-        ollama_model: str = "llama3.2:1b",
+        groq_model: str = "llama-3.3-70b-versatile",
+        embedding_model: str = "sentence-transformers/all-MiniLM-L6-v2",
         rag_context_path: str = "./RAG_context",
         collection_name: str = "multi_agent_rag"
     ):
-        self.ollama_model = f"ollama/{ollama_model}"
+        if not os.getenv("GROQ_API_KEY"):
+            raise ValueError("GROQ_API_KEY is required to use Groq models")
+
+        self.groq_model = groq_model
+        self.embedding_model = embedding_model
+        self.crewai_llm = f"groq/{groq_model}"
         self.rag_context_path = rag_context_path
         self.collection_name = collection_name
         
@@ -79,15 +79,16 @@ class MultiAgentRAGSystem:
                 csv=os.path.join(self.rag_context_path, "projects.csv"),
                 config=dict(
                     llm=dict(
-                        provider="ollama",
+                        provider="groq",
                         config=dict(
-                            model="llama3.2:1b",
+                            model=self.groq_model,
+                            api_key=os.getenv("GROQ_API_KEY"),
                         ),
                     ),
                     embedder=dict(
-                        provider="ollama",
+                        provider="huggingface",
                         config=dict(
-                            model="nomic-embed-text",
+                            model=self.embedding_model,
                         ),
                     ),
                 )
@@ -98,15 +99,16 @@ class MultiAgentRAGSystem:
                 pdf=os.path.join(self.rag_context_path, "sample_policy_and_procedures_manual (1).pdf"),
                 config=dict(
                     llm=dict(
-                        provider="ollama",
+                        provider="groq",
                         config=dict(
-                            model="llama3.2:1b",
+                            model=self.groq_model,
+                            api_key=os.getenv("GROQ_API_KEY"),
                         ),
                     ),
                     embedder=dict(
-                        provider="ollama",
+                        provider="huggingface",
                         config=dict(
-                            model="nomic-embed-text",
+                            model=self.embedding_model,
                         ),
                     ),
                 )
@@ -117,15 +119,16 @@ class MultiAgentRAGSystem:
                 json_path=os.path.join(self.rag_context_path, "rag_context_organizational_data.json"),
                 config=dict(
                     llm=dict(
-                        provider="ollama",
+                        provider="groq",
                         config=dict(
-                            model="llama3.2:1b",
+                            model=self.groq_model,
+                            api_key=os.getenv("GROQ_API_KEY"),
                         ),
                     ),
                     embedder=dict(
-                        provider="ollama",
+                        provider="huggingface",
                         config=dict(
-                            model="nomic-embed-text",
+                            model=self.embedding_model,
                         ),
                     ),
                 )
@@ -135,15 +138,16 @@ class MultiAgentRAGSystem:
             self.rag_tool = RagTool(
                 config=dict(
                     llm=dict(
-                        provider="ollama",
+                        provider="groq",
                         config=dict(
-                            model="llama3.2:1b",
+                            model=self.groq_model,
+                            api_key=os.getenv("GROQ_API_KEY"),
                         ),
                     ),
                     embedder=dict(
-                        provider="ollama",
+                        provider="huggingface",
                         config=dict(
-                            model="nomic-embed-text",
+                            model=self.embedding_model,
                         ),
                     ),
                 )
@@ -166,7 +170,7 @@ class MultiAgentRAGSystem:
                         You have access to comprehensive project databases and can provide detailed 
                         information about employee roles, project timelines, and departmental structures.""",
             tools=[self.csv_tool],
-            llm=self.ollama_model,
+            llm=self.crewai_llm,
             verbose=True,
             allow_delegation=False,
             max_iter=3
@@ -180,7 +184,7 @@ class MultiAgentRAGSystem:
                         procedures and regulatory requirements. You can quickly locate and 
                         interpret policy information from official documents.""",
             tools=[self.pdf_tool],
-            llm=self.ollama_model,
+            llm=self.crewai_llm,
             verbose=True,
             allow_delegation=False,
             max_iter=3
@@ -194,7 +198,7 @@ class MultiAgentRAGSystem:
                         structure, employee hierarchies, and organizational data. You can 
                         provide insights into company demographics and organizational patterns.""",
             tools=[self.json_tool],
-            llm=self.ollama_model,
+            llm=self.crewai_llm,
             verbose=True,
             allow_delegation=False,
             max_iter=3
@@ -208,7 +212,7 @@ class MultiAgentRAGSystem:
                         information from multiple sources. You coordinate with various specialists 
                         to provide complete, accurate, and well-structured responses to complex queries.""",
             tools=[self.rag_tool],
-            llm=self.ollama_model,
+            llm=self.crewai_llm,
             verbose=True,
             allow_delegation=True,
             max_iter=5

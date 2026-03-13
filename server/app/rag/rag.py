@@ -14,14 +14,14 @@ from crewai.rag.config.utils import set_rag_config, get_rag_client, clear_rag_co
 from crewai.rag.chromadb.config import ChromaDBConfig
 
 # Embeddings
-from langchain_community.embeddings import OllamaEmbeddings
+from langchain_huggingface import HuggingFaceEmbeddings
 
 # CrewAI
 from crewai import Agent, Task, Crew
 from langchain_core.tools import BaseTool
 
-# Ollama
-from langchain_community.llms import Ollama
+# Groq
+from langchain_groq import ChatGroq
 
 # Setup logging
 logging.basicConfig(level=logging.INFO)
@@ -36,7 +36,6 @@ class PDFProcessor:
             chunk_size=1000,
             chunk_overlap=200,
             length_function=len,
-        )
         )
     
     def extract_text_from_pdf(self, pdf_path: str) -> str:
@@ -106,7 +105,7 @@ class VectorSearchTool(BaseTool):
     name: str = "vector_search"
     description: str = "Search through the document vector database for relevant information"
     
-    def __init__(self, vector_store: QdrantVectorStore, embeddings: OllamaEmbeddings):
+    def __init__(self, vector_store: QdrantVectorStore, embeddings: HuggingFaceEmbeddings):
         super().__init__()
         self._vector_store = vector_store
         self._embeddings = embeddings
@@ -135,14 +134,19 @@ class RAGChatbot:
     
     def __init__(
         self,
-        ollama_model: str = "llama3.2:1b",
-        embedding_model: str = "nomic-embed-text",
+        groq_model: str = "llama-3.3-70b-versatile",
+        embedding_model: str = "sentence-transformers/all-MiniLM-L6-v2",
         qdrant_host: str = "localhost",
         qdrant_port: int = 6333
     ):
+        groq_api_key = os.getenv("GROQ_API_KEY")
+        if not groq_api_key:
+            raise ValueError("GROQ_API_KEY is required to use Groq models")
+
         # Initialize components
-        self.llm = Ollama(model=ollama_model)
-        self.embeddings = OllamaEmbeddings(model=embedding_model)
+        self.groq_model = groq_model
+        self.llm = ChatGroq(model=groq_model, api_key=groq_api_key, temperature=0)
+        self.embeddings = HuggingFaceEmbeddings(model_name=embedding_model)
         self.vector_store = QdrantVectorStore(host=qdrant_host, port=qdrant_port)
         self.pdf_processor = PDFProcessor()
         self.memory = ConversationMemory()
@@ -153,8 +157,7 @@ class RAGChatbot:
     
     def _setup_crew(self):
         """Setup CrewAI agent and crew"""
-        # CrewAI expects model format like "ollama/model_name"
-        crewai_model = f"ollama/{self.llm.model}"
+        crewai_model = f"groq/{self.groq_model}"
         
         self.agent = Agent(
             role="Document Assistant",
@@ -251,8 +254,8 @@ class RAGChatbot:
 if __name__ == "__main__":
     # Initialize the RAG chatbot
     chatbot = RAGChatbot(
-        ollama_model="llama3.2:1b",  # Change to your preferred model
-        embedding_model="nomic-embed-text"
+        groq_model="llama-3.3-70b-versatile",
+        embedding_model="sentence-transformers/all-MiniLM-L6-v2"
     )
     
     # Add a PDF to the vector database
