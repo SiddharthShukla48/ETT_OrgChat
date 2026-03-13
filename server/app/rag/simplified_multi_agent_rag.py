@@ -1,16 +1,14 @@
 import os
 import uuid
 import json
-import pandas as pd
+import csv
 from typing import List, Dict, Any, Optional
 from datetime import datetime
 import logging
 
-# CrewAI imports
-from crewai import Agent, Task, Crew, Process
-
 # LLM imports
 from langchain_groq import ChatGroq
+from app.core.config import settings
 
 # Setup logging
 logging.basicConfig(level=logging.INFO)
@@ -32,7 +30,8 @@ class SimpleFileSearchTool:
                 with open(self.file_path, 'r') as f:
                     return json.load(f)
             elif self.file_type == "csv":
-                return pd.read_csv(self.file_path)
+                with open(self.file_path, 'r', newline='') as f:
+                    return list(csv.DictReader(f))
             elif self.file_type == "pdf":
                 # For now, return a placeholder - PDF processing would need PyPDF2
                 return "PDF content processing not implemented in simple version"
@@ -90,6 +89,14 @@ class SimpleFileSearchTool:
     def _search_csv(self, query: str) -> str:
         """Search CSV data"""
         results = []
+        rows = self.content or []
+
+        if not rows:
+            return f"No project data found for '{query}'"
+
+        columns = set()
+        for row in rows:
+            columns.update(row.keys())
         
         # Check for department-specific queries
         if "department" in query:
@@ -100,16 +107,17 @@ class SimpleFileSearchTool:
                     found_dept = dept
                     break
             
-            if found_dept and 'department' in self.content.columns:
-                # Filter by department (case-insensitive)
-                dept_mask = self.content['department'].str.lower().str.contains(found_dept, na=False)
-                if dept_mask.any():
-                    dept_data = self.content[dept_mask]
-                    unique_employees = dept_data['employee_name'].nunique() if 'employee_name' in dept_data.columns else 0
+            if found_dept and 'department' in columns:
+                dept_data = [
+                    row for row in rows
+                    if found_dept in (row.get('department') or '').lower()
+                ]
+                if dept_data:
+                    unique_employees = len({row.get('employee_name') for row in dept_data if row.get('employee_name')}) if 'employee_name' in columns else 0
                     results.append(f"Department Analysis: {unique_employees} unique employees work in the {found_dept.title()} department")
                     
                     # Add sample employee info from this department
-                    for _, row in dept_data.head(5).iterrows():
+                    for row in dept_data[:5]:
                         results.append(f"Employee {row.get('employee_name', 'N/A')} (ID: {row.get('employee_id', 'N/A')}) working on {row.get('project_name', 'N/A')} as {row.get('role_in_project', 'N/A')}")
                     
                     return "\n".join(results)
@@ -117,13 +125,13 @@ class SimpleFileSearchTool:
         # General search for projects and employees
         if "project" in query or "employee" in query:
             # Get basic stats
-            total_projects = len(self.content['project_id'].unique()) if 'project_id' in self.content.columns else 0
-            total_employees = len(self.content['employee_id'].unique()) if 'employee_id' in self.content.columns else 0
+            total_projects = len({row.get('project_id') for row in rows if row.get('project_id')}) if 'project_id' in columns else 0
+            total_employees = len({row.get('employee_id') for row in rows if row.get('employee_id')}) if 'employee_id' in columns else 0
             
             results.append(f"Project Database: {total_employees} employees working on {total_projects} projects")
             
             # Add sample data
-            for _, row in self.content.head(3).iterrows():
+            for row in rows[:3]:
                 results.append(f"Employee {row.get('employee_name', 'N/A')} working on {row.get('project_name', 'N/A')} as {row.get('role_in_project', 'N/A')}")
         
         return "\n".join(results) if results else f"No project data found for '{query}'"
@@ -134,14 +142,14 @@ class SimplifiedMultiAgentRAGSystem:
     
     def __init__(
         self,
-        groq_model: str = "llama-3.3-70b-versatile",
+        groq_model: Optional[str] = None,
         groq_api_key: Optional[str] = None,
         rag_context_path: str = "./RAG_context"
     ):
-        self.groq_model = groq_model
+        self.groq_model = groq_model or settings.groq_model
         self.rag_context_path = rag_context_path
 
-        key = groq_api_key or os.getenv("GROQ_API_KEY")
+        key = groq_api_key or settings.groq_api_key or os.getenv("GROQ_API_KEY")
         if not key:
             raise ValueError("GROQ_API_KEY is required to use Groq models")
         
@@ -150,9 +158,6 @@ class SimplifiedMultiAgentRAGSystem:
         
         # Initialize file tools
         self._setup_file_tools()
-        
-        # Initialize agents
-        self._setup_agents()
         
         # Conversation memory
         self.conversations: Dict[str, List[Dict]] = {}
@@ -184,55 +189,6 @@ class SimplifiedMultiAgentRAGSystem:
             
         except Exception as e:
             logger.error(f"Error setting up file tools: {e}")
-            raise
-    
-    def _setup_agents(self):
-        """Setup specialized agents"""
-        try:
-            # Projects & Employee Data Specialist
-            self.projects_agent = Agent(
-                role="Projects & Employee Data Specialist",
-                goal="Analyze employee project assignments and provide detailed information about team structures and project details",
-                backstory="You are an expert in analyzing employee project data, understanding team dynamics, and providing insights about project assignments and employee roles.",
-                llm=self.llm,
-                verbose=True,
-                allow_delegation=False
-            )
-            
-            # Policy & Procedures Specialist  
-            self.policy_agent = Agent(
-                role="Policy & Procedures Specialist",
-                goal="Analyze company policies and procedures to provide accurate information about organizational guidelines and rules",
-                backstory="You are an expert in company policies, procedures, and organizational guidelines. You help employees understand company rules and regulations.",
-                llm=self.llm,
-                verbose=True,
-                allow_delegation=False
-            )
-            
-            # Organizational Data Analyst
-            self.org_agent = Agent(
-                role="Organizational Data Analyst",
-                goal="Analyze organizational structure, company information, and employee hierarchies",
-                backstory="You are an expert in organizational analysis, company structure, and employee management. You provide insights about the company's organizational setup.",
-                llm=self.llm,
-                verbose=True,
-                allow_delegation=False
-            )
-            
-            # Knowledge Synthesis Manager
-            self.synthesis_agent = Agent(
-                role="Knowledge Synthesis Manager", 
-                goal="Coordinate responses from specialist agents and provide comprehensive answers to user queries",
-                backstory="You are an expert coordinator who synthesizes information from multiple sources to provide clear, helpful, and comprehensive responses to user questions.",
-                llm=self.llm,
-                verbose=True,
-                allow_delegation=False
-            )
-            
-            logger.info("All agents initialized successfully!")
-            
-        except Exception as e:
-            logger.error(f"Error setting up agents: {e}")
             raise
     
     def analyze_query_type(self, query: str) -> Dict[str, Any]:
