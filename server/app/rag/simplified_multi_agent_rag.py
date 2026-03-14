@@ -1,326 +1,517 @@
-import os
-import uuid
-import json
 import csv
-from typing import List, Dict, Any, Optional
-from datetime import datetime
+import json
 import logging
+import re
+from pathlib import Path
+from typing import Dict, List, Optional
 
-# LLM imports
-from langchain_groq import ChatGroq
-from app.core.config import settings
+from crewai import Agent, Crew, LLM, Task
+from crewai.tools import BaseTool
+from pydantic import Field
+from pypdf import PdfReader
 
-# Setup logging
-logging.basicConfig(level=logging.INFO)
+from ..core.config import settings
+
 logger = logging.getLogger(__name__)
 
 
-class SimpleFileSearchTool:
-    """Simple tool to search files without complex RAG dependencies"""
-    
-    def __init__(self, file_path: str, file_type: str):
-        self.file_path = file_path
-        self.file_type = file_type
-        self.content = self._load_content()
-    
-    def _load_content(self):
-        """Load and parse file content"""
-        try:
-            if self.file_type == "json":
-                with open(self.file_path, 'r') as f:
-                    return json.load(f)
-            elif self.file_type == "csv":
-                with open(self.file_path, 'r', newline='') as f:
-                    return list(csv.DictReader(f))
-            elif self.file_type == "pdf":
-                # For now, return a placeholder - PDF processing would need PyPDF2
-                return "PDF content processing not implemented in simple version"
-            else:
-                with open(self.file_path, 'r') as f:
-                    return f.read()
-        except Exception as e:
-            logger.error(f"Error loading {self.file_type} file: {e}")
-            return None
-    
-    def search(self, query: str) -> str:
-        """Search content based on query"""
-        query_lower = query.lower()
-        
-        if self.file_type == "json" and self.content:
-            # Search JSON structure
-            return self._search_json(query_lower)
-        elif self.file_type == "csv" and self.content is not None:
-            # Search CSV data
-            return self._search_csv(query_lower)
-        elif self.file_type == "pdf":
-            return f"PDF search for '{query}' - PDF processing needs to be implemented"
-        else:
-            return f"No results found for '{query}'"
-    
-    def _search_json(self, query: str) -> str:
-        """Search JSON data"""
-        results = []
-        
-        # Search in policies
-        if "policy" in query or "policies" in query:
-            if "policies" in self.content:
-                for policy in self.content["policies"]:
-                    policy_text = f"Policy: {policy.get('title', 'N/A')} - {policy.get('description', 'N/A')}"
-                    if any(term in policy_text.lower() for term in query.split()):
-                        results.append(policy_text)
-        
-        # Search in company info
-        if "company" in query or "organization" in query:
-            if "organization_info" in self.content:
-                org_info = self.content["organization_info"]
-                results.append(f"Company: {org_info.get('company_name', 'N/A')} - {org_info.get('mission', 'N/A')}")
-        
-        # Search in employees
-        if "employee" in query or "employees" in query:
-            if "employees" in self.content:
-                employee_count = len(self.content["employees"])
-                results.append(f"Total employees: {employee_count}")
-                # Add sample employee info
-                for emp in self.content["employees"][:3]:  # First 3 employees
-                    results.append(f"Employee: {emp.get('first_name', '')} {emp.get('last_name', '')} - {emp.get('role', 'N/A')} in {emp.get('department', 'N/A')}")
-        
-        return "\n".join(results) if results else f"No specific information found for '{query}' in organizational data"
-    
-    def _search_csv(self, query: str) -> str:
-        """Search CSV data"""
-        results = []
-        rows = self.content or []
+def _truncate(text: str, limit: int) -> str:
+    if len(text) <= limit:
+        return text
+    return text[: limit - 3] + "..."
 
-        if not rows:
-            return f"No project data found for '{query}'"
 
-        columns = set()
-        for row in rows:
-            columns.update(row.keys())
-        
-        # Check for department-specific queries
-        if "department" in query:
-            dept_keywords = ['engineering', 'finance', 'marketing', 'sales', 'operations', 'it support', 'legal']
-            found_dept = None
-            for dept in dept_keywords:
-                if dept in query:
-                    found_dept = dept
-                    break
-            
-            if found_dept and 'department' in columns:
-                dept_data = [
-                    row for row in rows
-                    if found_dept in (row.get('department') or '').lower()
-                ]
-                if dept_data:
-                    unique_employees = len({row.get('employee_name') for row in dept_data if row.get('employee_name')}) if 'employee_name' in columns else 0
-                    results.append(f"Department Analysis: {unique_employees} unique employees work in the {found_dept.title()} department")
-                    
-                    # Add sample employee info from this department
-                    for row in dept_data[:5]:
-                        results.append(f"Employee {row.get('employee_name', 'N/A')} (ID: {row.get('employee_id', 'N/A')}) working on {row.get('project_name', 'N/A')} as {row.get('role_in_project', 'N/A')}")
-                    
-                    return "\n".join(results)
-        
-        # General search for projects and employees
-        if "project" in query or "employee" in query:
-            # Get basic stats
-            total_projects = len({row.get('project_id') for row in rows if row.get('project_id')}) if 'project_id' in columns else 0
-            total_employees = len({row.get('employee_id') for row in rows if row.get('employee_id')}) if 'employee_id' in columns else 0
-            
-            results.append(f"Project Database: {total_employees} employees working on {total_projects} projects")
-            
-            # Add sample data
-            for row in rows[:3]:
-                results.append(f"Employee {row.get('employee_name', 'N/A')} working on {row.get('project_name', 'N/A')} as {row.get('role_in_project', 'N/A')}")
-        
-        return "\n".join(results) if results else f"No project data found for '{query}'"
+class ProjectsCSVTool(BaseTool):
+    name: str = "projects_csv_tool"
+    description: str = "Searches project allocation data (employee, project, role, department) from CSV."
+    dataset: List[Dict[str, str]] = Field(default_factory=list)
+
+    def _run(self, query: str) -> str:
+        q = query.lower()
+        matches = []
+        for row in self.dataset:
+            row_text = " ".join(str(v) for v in row.values()).lower()
+            if any(token in row_text for token in q.split() if len(token) > 2):
+                matches.append(row)
+
+        if not matches:
+            return "No closely matching rows found in project allocations."
+
+        lines = []
+        for row in matches[:8]:
+            lines.append(
+                (
+                    f"Employee {row.get('employee_name', 'N/A')} ({row.get('employee_id', 'N/A')}) "
+                    f"works on {row.get('project_name', 'N/A')} as {row.get('role_in_project', 'N/A')} "
+                    f"from {row.get('start_date', 'N/A')} in {row.get('department', 'N/A')}."
+                )
+            )
+        return "\n".join(lines)
+
+
+class PoliciesCSVTool(BaseTool):
+    name: str = "policies_csv_tool"
+    description: str = "Searches policy/procedure rules from CSV and returns key policy details."
+    dataset: List[Dict[str, str]] = Field(default_factory=list)
+
+    def _run(self, query: str) -> str:
+        q = query.lower()
+        matches = []
+        for row in self.dataset:
+            row_text = " ".join(str(v) for v in row.values()).lower()
+            if any(token in row_text for token in q.split() if len(token) > 2):
+                matches.append(row)
+
+        if not matches:
+            return "No relevant policy rows were found."
+
+        lines = []
+        for row in matches[:6]:
+            lines.append(
+                (
+                    f"{row.get('title', 'Untitled Policy')} [{row.get('category', 'General')}]: "
+                    f"{row.get('description', 'No description')} "
+                    f"Applicable roles: {row.get('applicable_roles', 'N/A')}. "
+                    f"Approval required: {row.get('approval_required', 'N/A')}."
+                )
+            )
+        return "\n".join(lines)
+
+
+class OrganizationJSONTool(BaseTool):
+    name: str = "organization_json_tool"
+    description: str = "Searches organization context JSON (employees, departments, benefits, trainings)."
+    data: Dict = Field(default_factory=dict)
+
+    @staticmethod
+    def _compact(value):
+        if isinstance(value, list):
+            return value[:5]
+        if isinstance(value, dict):
+            return {k: value[k] for k in list(value.keys())[:8]}
+        return value
+
+    def _run(self, query: str) -> str:
+        q = query.lower()
+
+        if not self.data:
+            return "Organizational JSON context is unavailable."
+
+        selected_parts = []
+        for key in [
+            "organization_info",
+            "departments",
+            "benefits",
+            "training_programs",
+            "office_locations",
+            "employees",
+            "policies",
+        ]:
+            value = self.data.get(key)
+            if value is None:
+                continue
+
+            compact_value = self._compact(value)
+            serialized = json.dumps(compact_value, ensure_ascii=True)
+            if any(token in serialized.lower() for token in q.split() if len(token) > 2):
+                selected_parts.append({key: compact_value})
+
+        if not selected_parts:
+            # Fallback to compact organization overview when no direct key match is found.
+            overview = {
+                "organization_info": self._compact(self.data.get("organization_info", {})),
+                "departments": self._compact(self.data.get("departments", [])),
+                "benefits": self._compact(self.data.get("benefits", [])),
+            }
+            return json.dumps(overview, ensure_ascii=True, indent=2)
+
+        return json.dumps(selected_parts[:3], ensure_ascii=True, indent=2)
+
+
+class PolicyPDFTool(BaseTool):
+    name: str = "policy_pdf_tool"
+    description: str = "Searches policy handbook PDF text passages relevant to user questions."
+    content: str = ""
+
+    def _run(self, query: str) -> str:
+        if not self.content:
+            return "Policy handbook PDF content is unavailable."
+
+        q_tokens = [t for t in query.lower().split() if len(t) > 2]
+        paragraphs = [p.strip() for p in self.content.split("\n\n") if p.strip()]
+
+        scored = []
+        for para in paragraphs:
+            text = para.lower()
+            score = sum(1 for token in q_tokens if token in text)
+            if score > 0:
+                scored.append((score, para))
+
+        if not scored:
+            return "No matching handbook section found for this query."
+
+        scored.sort(key=lambda x: x[0], reverse=True)
+        top = [item[1] for item in scored[:3]]
+        return "\n\n".join(top)
 
 
 class SimplifiedMultiAgentRAGSystem:
-    """Simplified multi-agent RAG system with direct file processing"""
-    
-    def __init__(
-        self,
-        groq_model: Optional[str] = None,
-        groq_api_key: Optional[str] = None,
-        rag_context_path: str = "./RAG_context"
-    ):
-        self.groq_model = groq_model or settings.groq_model
-        self.rag_context_path = rag_context_path
+    """CrewAI-powered multi-agent RAG system over local org context files."""
 
-        key = groq_api_key or settings.groq_api_key or os.getenv("GROQ_API_KEY")
-        if not key:
-            raise ValueError("GROQ_API_KEY is required to use Groq models")
-        
-        # Initialize LLM
-        self.llm = ChatGroq(model=self.groq_model, api_key=key, temperature=0)
-        
-        # Initialize file tools
-        self._setup_file_tools()
-        
-        # Conversation memory
-        self.conversations: Dict[str, List[Dict]] = {}
-        
-        logger.info("Simplified multi-agent RAG system initialized successfully!")
-    
-    def _setup_file_tools(self):
-        """Setup simple file processing tools"""
+    def __init__(self) -> None:
+        self.base_dir = Path(__file__).resolve().parents[2]
+        self.context_dir = self.base_dir / "RAG_context"
+        self.conversation_history: Dict[str, List[Dict[str, str]]] = {}
+
+        self.projects_data = self._load_csv(self.context_dir / "projects.csv")
+        self.policies_data = self._load_csv(self.context_dir / "policies.csv")
+        self.org_data = self._load_json(self.context_dir / "rag_context_organizational_data.json")
+        self.pdf_text = self._load_pdf_text()
+
+        self.projects_tool = ProjectsCSVTool(dataset=self.projects_data)
+        self.policies_tool = PoliciesCSVTool(dataset=self.policies_data)
+        self.org_tool = OrganizationJSONTool(data=self.org_data)
+        self.pdf_tool = PolicyPDFTool(content=self.pdf_text)
+
+        self.llm = self._build_llm()
+
+    def _build_llm(self) -> Optional[LLM]:
+        if not settings.groq_api_key:
+            logger.warning("GROQ_API_KEY not configured; using deterministic fallback responses.")
+            return None
+
+        model_name = settings.groq_model or "llama-3.3-70b-versatile"
         try:
-            # JSON tool for organizational data
-            self.json_tool = SimpleFileSearchTool(
-                os.path.join(self.rag_context_path, "rag_context_organizational_data.json"),
-                "json"
+            # CrewAI 1.x uses LiteLLM model naming for Groq providers.
+            return LLM(
+                model=f"groq/{model_name}",
+                api_key=settings.groq_api_key,
+                temperature=0.2,
+                max_tokens=700,
             )
-            
-            # CSV tool for projects data
-            self.csv_tool = SimpleFileSearchTool(
-                os.path.join(self.rag_context_path, "projects.csv"),
-                "csv"
-            )
-            
-            # PDF tool placeholder
-            self.pdf_tool = SimpleFileSearchTool(
-                os.path.join(self.rag_context_path, "sample_policy_and_procedures_manual (1).pdf"),
-                "pdf"
-            )
-            
-            logger.info("File processing tools initialized successfully!")
-            
-        except Exception as e:
-            logger.error(f"Error setting up file tools: {e}")
-            raise
-    
-    def analyze_query_type(self, query: str) -> Dict[str, Any]:
-        """Analyze query to determine which agents should handle it"""
-        query_lower = query.lower()
-        
-        analysis = {
-            'requires_projects': False,
-            'requires_policy': False,
-            'requires_org': False,
-            'is_general': False,
-            'scores': {
-                'projects': 0,
-                'policy': 0,
-                'organization': 0
-            }
+        except Exception as exc:
+            logger.error("Failed to initialize CrewAI LLM: %s", exc)
+            return None
+
+    @staticmethod
+    def _load_csv(path: Path) -> List[Dict[str, str]]:
+        if not path.exists():
+            logger.warning("CSV context missing: %s", path)
+            return []
+
+        with path.open("r", encoding="utf-8", newline="") as f:
+            reader = csv.DictReader(f)
+            return [dict(row) for row in reader]
+
+    @staticmethod
+    def _load_json(path: Path) -> Dict:
+        if not path.exists():
+            logger.warning("JSON context missing: %s", path)
+            return {}
+
+        with path.open("r", encoding="utf-8") as f:
+            return json.load(f)
+
+    def _load_pdf_text(self) -> str:
+        pdf_candidates = [
+            self.context_dir / "sample_policy_and_procedures_manual.pdf",
+            self.context_dir / "sample_policy_and_procedures_manual (1).pdf",
+        ]
+
+        for pdf_path in pdf_candidates:
+            if not pdf_path.exists():
+                continue
+            try:
+                reader = PdfReader(str(pdf_path))
+                chunks = []
+                for page in reader.pages:
+                    chunks.append(page.extract_text() or "")
+                return "\n\n".join(chunks).strip()
+            except Exception as exc:
+                logger.warning("Unable to parse PDF %s: %s", pdf_path.name, exc)
+
+        return ""
+
+    def analyze_query_type(self, query: str) -> Dict[str, bool]:
+        q = query.lower()
+
+        project_keywords = {
+            "project",
+            "employee",
+            "allocation",
+            "role",
+            "team",
+            "department",
+            "resource",
+            "assignment",
         }
-        
-        # Projects keywords
-        project_keywords = ['project', 'assignment', 'team', 'employee', 'role', 'department', 'working on']
-        for keyword in project_keywords:
-            if keyword in query_lower:
-                analysis['scores']['projects'] += 1
-        
-        # Policy keywords  
-        policy_keywords = ['policy', 'procedure', 'rule', 'guideline', 'handbook', 'regulation', 'hiring', 'leave', 'vacation']
-        for keyword in policy_keywords:
-            if keyword in query_lower:
-                analysis['scores']['policy'] += 1
-        
-        # Organizational keywords
-        org_keywords = ['organization', 'company', 'structure', 'hierarchy', 'management', 'organizational']
-        for keyword in org_keywords:
-            if keyword in query_lower:
-                analysis['scores']['organization'] += 1
-        
-        # Determine requirements
-        analysis['requires_projects'] = analysis['scores']['projects'] > 0
-        analysis['requires_policy'] = analysis['scores']['policy'] > 0  
-        analysis['requires_org'] = analysis['scores']['organization'] > 0
-        analysis['is_general'] = sum(analysis['scores'].values()) == 0
-        
-        return analysis
-    
-    def chat(self, message: str, session_id: Optional[str] = None) -> str:
-        """Process a chat message using the multi-agent system"""
+        policy_keywords = {
+            "policy",
+            "leave",
+            "vacation",
+            "remote",
+            "approval",
+            "compliance",
+            "procedure",
+            "rule",
+            "disciplinary",
+        }
+        org_keywords = {
+            "organization",
+            "benefit",
+            "training",
+            "location",
+            "company",
+            "office",
+            "hr",
+            "salary",
+            "compensation",
+            "pay",
+            "payroll",
+            "wage",
+        }
+
+        requires_projects = any(k in q for k in project_keywords)
+        requires_policy = any(k in q for k in policy_keywords)
+        requires_org = any(k in q for k in org_keywords)
+
+        if not (requires_projects or requires_policy or requires_org):
+            # For generic questions, consult all specialists.
+            requires_projects = True
+            requires_policy = True
+            requires_org = True
+
+        return {
+            "requires_projects": requires_projects,
+            "requires_policy": requires_policy,
+            "requires_org": requires_org,
+        }
+
+    @staticmethod
+    def _is_salary_query(query: str) -> bool:
+        q = query.lower()
+        salary_terms = {"salary", "salaries", "compensation", "pay", "payroll", "wage", "ctc"}
+        return any(term in q for term in salary_terms)
+
+    @staticmethod
+    def _extract_name_tokens(query: str) -> List[str]:
+        # Extract alphabetic tokens to match likely employee names.
+        return [t.lower() for t in re.findall(r"[A-Za-z]+", query) if len(t) > 2]
+
+    def _format_salary(self, amount) -> str:
         try:
-            if not session_id:
-                session_id = str(uuid.uuid4())
-            
-            # Get conversation history
-            conversation_history = self.get_conversation_history(session_id)
-            
-            # Analyze query type
-            query_analysis = self.analyze_query_type(message)
-            
-            # Search relevant data sources
-            search_results = {}
-            
-            if query_analysis['requires_projects']:
-                search_results['projects'] = self.csv_tool.search(message)
-            
-            if query_analysis['requires_policy']:
-                search_results['policy'] = self.pdf_tool.search(message)
-            
-            if query_analysis['requires_org']:
-                search_results['organization'] = self.json_tool.search(message)
-            
-            # Combine search results for LLM processing
-            context_parts = []
-            
-            if search_results.get('organization'):
-                context_parts.append(f"Organizational Data:\n{search_results['organization']}")
-            
-            if search_results.get('projects'):
-                context_parts.append(f"Project Data:\n{search_results['projects']}")
-            
-            if search_results.get('policy'):
-                context_parts.append(f"Policy Data:\n{search_results['policy']}")
-            
-            if not context_parts:
-                final_response = "I don't have specific information about that topic in our current knowledge base. Please contact HR directly for more detailed information."
-            else:
-                # Use LLM to synthesize a natural response
-                context = "\n\n".join(context_parts)
-                
-                prompt = f"""
-Based on the following company data, provide a clear and specific answer to this question: {message}
+            return f"${int(amount):,}"
+        except Exception:
+            return str(amount)
 
-Available Company Data:
-{context}
+    def _salary_response(self, query: str) -> str:
+        employees = self.org_data.get("employees", []) if isinstance(self.org_data, dict) else []
+        if not employees:
+            return "Salary details are not available in the current organizational dataset."
 
-Instructions:
-- Give a direct, helpful answer based only on the provided data
-- Include specific numbers, names, dates, and details when available
-- If the question asks for counts or statistics, provide exact numbers
-- Be conversational and helpful, not just a data dump
-- If the data doesn't fully answer the question, acknowledge what information is available
+        tokens = self._extract_name_tokens(query)
+        generic_tokens = {
+            "need",
+            "salary",
+            "salaries",
+            "details",
+            "detail",
+            "employee",
+            "employees",
+            "show",
+            "list",
+            "give",
+            "tell",
+            "all",
+            "of",
+            "the",
+            "for",
+            "and",
+            "with",
+            "their",
+        }
+        filter_tokens = [t for t in tokens if t not in generic_tokens]
 
-Answer:"""
+        matches = []
+        for emp in employees:
+            salary = emp.get("salary")
+            if salary is None:
+                continue
 
-                try:
-                    llm_response = self.llm.invoke(prompt)
-                    final_response = getattr(llm_response, "content", str(llm_response))
-                except Exception as llm_error:
-                    logger.error(f"LLM processing error: {llm_error}")
-                    final_response = "\n\n".join(context_parts)  # Fallback to raw data
-            
-            # Store conversation
-            self._store_conversation(session_id, message, final_response)
-            
+            full_name = f"{emp.get('first_name', '')} {emp.get('last_name', '')}".strip().lower()
+            emp_id = str(emp.get("employee_id", "")).lower()
+
+            if filter_tokens:
+                if not any(tok in full_name or tok in emp_id for tok in filter_tokens):
+                    continue
+
+            matches.append(emp)
+
+        if filter_tokens and not matches:
+            return "I could not find salary records for the specified employee name or ID."
+
+        selected = matches if matches else [e for e in employees if e.get("salary") is not None]
+        lines = []
+        for emp in selected[:15]:
+            name = f"{emp.get('first_name', '')} {emp.get('last_name', '')}".strip() or emp.get("employee_id", "Unknown")
+            lines.append(
+                f"- {name} ({emp.get('employee_id', 'N/A')}): {self._format_salary(emp.get('salary'))}"
+            )
+
+        if len(selected) > 15:
+            lines.append(f"- ...and {len(selected) - 15} more employees in the dataset.")
+
+        salaries = [int(e.get("salary")) for e in selected if e.get("salary") is not None]
+        if salaries:
+            summary = (
+                f"Salary range: {self._format_salary(min(salaries))} to {self._format_salary(max(salaries))}. "
+                f"Average: {self._format_salary(sum(salaries) // len(salaries))}."
+            )
+        else:
+            summary = "No numeric salary values were found."
+
+        return "Employee salary details:\n" + "\n".join(lines) + "\n\n" + summary
+
+    def _build_agents(self, analysis: Dict[str, bool]) -> List[Agent]:
+        agents: List[Agent] = []
+
+        if analysis.get("requires_projects"):
+            agents.append(
+                Agent(
+                    role="Projects and Employee Data Specialist",
+                    goal="Extract exact project allocation and employee-role details from structured data.",
+                    backstory="Expert in project staffing, employee assignments, and departmental workloads.",
+                    tools=[self.projects_tool],
+                    llm=self.llm,
+                    allow_delegation=False,
+                    verbose=False,
+                )
+            )
+
+        if analysis.get("requires_policy"):
+            agents.append(
+                Agent(
+                    role="Policy and Procedures Specialist",
+                    goal="Retrieve policy clauses and approval rules from policy datasets and handbook.",
+                    backstory="Expert in workplace policy interpretation and HR compliance language.",
+                    tools=[self.policies_tool, self.pdf_tool],
+                    llm=self.llm,
+                    allow_delegation=False,
+                    verbose=False,
+                )
+            )
+
+        if analysis.get("requires_org"):
+            agents.append(
+                Agent(
+                    role="Organizational Data Analyst",
+                    goal="Explain organization-level information such as benefits, departments, and trainings.",
+                    backstory="Expert in organizational structure and people operations data.",
+                    tools=[self.org_tool],
+                    llm=self.llm,
+                    allow_delegation=False,
+                    verbose=False,
+                )
+            )
+
+        agents.append(
+            Agent(
+                role="Knowledge Synthesis Manager",
+                goal="Synthesize specialist outputs into one concise, actionable response.",
+                backstory="Experienced manager who consolidates insights from multiple experts.",
+                llm=self.llm,
+                allow_delegation=False,
+                verbose=False,
+            )
+        )
+
+        return agents
+
+    def _build_tasks(self, query: str, agents: List[Agent]) -> List[Task]:
+        tasks: List[Task] = []
+
+        specialists = [a for a in agents if a.role != "Knowledge Synthesis Manager"]
+        manager = next(a for a in agents if a.role == "Knowledge Synthesis Manager")
+
+        for specialist in specialists:
+            tasks.append(
+                Task(
+                    description=(
+                        f"User query: '{query}'. Use your assigned data tools to gather relevant facts. "
+                        "Return bullet points with explicit references to entities (employee/project/policy/etc.)."
+                    ),
+                    expected_output="Bulleted factual findings from your data source.",
+                    agent=specialist,
+                )
+            )
+
+        tasks.append(
+            Task(
+                description=(
+                    f"Synthesize all specialist findings for query '{query}'. "
+                    "Provide one final answer that is clear, concise, and specific. "
+                    "If data is missing, state the limitation explicitly."
+                ),
+                expected_output="A final user-facing response.",
+                agent=manager,
+            )
+        )
+
+        return tasks
+
+    def _fallback_response(self, query: str, analysis: Dict[str, bool]) -> str:
+        sections = []
+
+        if analysis.get("requires_projects"):
+            projects_text = _truncate(self.projects_tool._run(query), 900)
+            sections.append("[Projects Data]\n" + projects_text)
+        if analysis.get("requires_policy"):
+            policy_snippet = _truncate(self.policies_tool._run(query), 900)
+            pdf_snippet = _truncate(self.pdf_tool._run(query), 900)
+            sections.append("[Policy Data]\n" + policy_snippet + "\n\n[Policy Handbook]\n" + pdf_snippet)
+        if analysis.get("requires_org"):
+            org_text = _truncate(self.org_tool._run(query), 900)
+            sections.append("[Organization Data]\n" + org_text)
+
+        if not sections:
+            sections.append("No matching context sources were selected for the query.")
+
+        return _truncate("\n\n".join(sections), 2500)
+
+    def chat(self, query: str, session_id: str) -> str:
+        if not session_id:
+            session_id = "default"
+
+        history = self.conversation_history.setdefault(session_id, [])
+        history.append({"role": "user", "content": query})
+
+        analysis = self.analyze_query_type(query)
+
+        if self._is_salary_query(query):
+            final_response = self._salary_response(query)
+            history.append({"role": "assistant", "content": final_response})
             return final_response
-            
-        except Exception as e:
-            logger.error(f"Error processing chat message: {e}")
-            return f"I apologize, but I encountered an error processing your request. Please try again or contact support."
-    
-    def _store_conversation(self, session_id: str, user_message: str, assistant_response: str):
-        """Store conversation in memory"""
-        if session_id not in self.conversations:
-            self.conversations[session_id] = []
-        
-        self.conversations[session_id].extend([
-            {"role": "user", "content": user_message, "timestamp": datetime.now().isoformat()},
-            {"role": "assistant", "content": assistant_response, "timestamp": datetime.now().isoformat()}
-        ])
-    
-    def get_conversation_history(self, session_id: str) -> List[Dict]:
-        """Get conversation history for a session"""
-        return self.conversations.get(session_id, [])
-    
-    def clear_conversation(self, session_id: str):
-        """Clear conversation history for a session"""
-        if session_id in self.conversations:
-            del self.conversations[session_id]
+
+        try:
+            if self.llm is None:
+                final_response = self._fallback_response(query, analysis)
+            else:
+                agents = self._build_agents(analysis)
+                tasks = self._build_tasks(query, agents)
+                crew = Crew(agents=agents, tasks=tasks, verbose=False)
+                result = crew.kickoff()
+                final_response = str(result).strip()
+                if not final_response:
+                    final_response = self._fallback_response(query, analysis)
+        except Exception as exc:
+            logger.error("Crew execution failed: %s", exc)
+            final_response = self._fallback_response(query, analysis)
+
+        history.append({"role": "assistant", "content": final_response})
+        return final_response
+
+    def get_conversation_history(self, session_id: str) -> List[Dict[str, str]]:
+        return self.conversation_history.get(session_id, [])
+
+    def clear_conversation(self, session_id: str) -> None:
+        self.conversation_history.pop(session_id, None)

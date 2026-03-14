@@ -8,6 +8,8 @@ class ChatRequest(BaseModel):
 class ChatResponse(BaseModel):
     response: str
     session_id: str
+    agent_used: Optional[str] = None
+    query_analysis: Optional[dict] = None
     
 class MultiAgentChatRequest(BaseModel):
     message: str

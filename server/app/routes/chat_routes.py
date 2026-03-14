@@ -31,9 +31,15 @@ async def multi_agent_chat(request: MultiAgentChatRequest):
         # Get query analysis for debugging/transparency
         query_analysis = rag_system.analyze_query_type(request.message)
         
-        # Determine which agent was primarily used based on analysis
-        agent_used = None
-        if query_analysis.get('requires_projects'):
+        # Determine displayed agent label based on analysis coverage.
+        active_count = sum(
+            int(bool(query_analysis.get(flag)))
+            for flag in ["requires_projects", "requires_policy", "requires_org"]
+        )
+
+        if active_count > 1:
+            agent_used = "Knowledge Synthesis Manager"
+        elif query_analysis.get('requires_projects'):
             agent_used = "Projects & Employee Data Specialist"
         elif query_analysis.get('requires_policy'):
             agent_used = "Policy & Procedures Specialist"
@@ -69,7 +75,9 @@ async def chat(request: ChatRequest, db=Depends(get_db)):
         
         return ChatResponse(
             response=result.response,
-            session_id=result.session_id
+            session_id=result.session_id,
+            agent_used=result.agent_used,
+            query_analysis=result.query_analysis,
         )
         
     except Exception as e:
